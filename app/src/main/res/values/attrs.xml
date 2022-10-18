@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="TCRTile">
+        <attr name="in_tray" format="boolean" value="false"/>
+        <attr name="empty" format="boolean" value="false"/>
+        <attr name="entered" format="boolean" value="false"/>
+        <attr name="wrong" format="boolean" value="false"/>
+        <attr name="nearly_right" format="boolean" value="false"/>
+        <attr name="right" format="boolean" value="false"/>
+        <attr name="letter_entered" format="boolean" value="false"/>
+    </declare-styleable>
+
+    <declare-styleable name="TCRStartTile">
+        <attr name="timer" format="boolean" value="false"/>
+        <attr name="pause" format="boolean" value="false"/>
+        <attr name="play" format="boolean" value="false"/>
+    </declare-styleable>
+
+    <attr name="swap_tile_number" format="color"/>
+    <attr name="restore_tint" format="color"/>
+
+    <attr name="tile_empty" format="color"/>
+    <attr name="grid_background" format="color"/>
+    <attr name="tray_background" format="color"/>
+    <attr name="tray_divider" format="color"/>
+    <attr name="tray_divider_highlight" format="color"/>
+    <attr name="list_background" format="color"/>
+    <attr name="list_game_background" format="color"/>
+    <attr name="list_tray_background" format="color"/>
+    <attr name="toolbar_background" format="color"/>
+    <attr name="menu_background" format="color"/>
+
+    <attr name="dropDownMenu" format="color"/>
+    <attr name="swaps_background" format="color"/>
+    <attr name="swaps_outline" format="color"/>
+    <attr name="tile_entered" format="color"/>
+
+    <attr name="timerOnBackground" format="color"/>
+
+    <attr name="tile_border" format="color"/>
+    <attr name="tile_right" format="color"/>
+    <attr name="tile_nearly_right" format="color"/>
+    <attr name="tile_wrong" format="color"/>
+    <attr name="tile_tray" format="color"/>
+
+    <attr name="tile_swap_border" format="color"/>
+    <attr name="tile_swap_background" format="color"/>
+
+    <attr name="tile_swap_background_entered" format="color"/>
+    <attr name="tile_start_border" format="color"/>
+    <attr name="tile_start_background" format="color"/>
+
+    <attr name="textColorPrimary" format="color"/>
+
+    <attr name="titleTextColor" format="color"/>
+    <attr name="subtitleTextColor" format="color"/>
+
+      >
+
+
+</resources>

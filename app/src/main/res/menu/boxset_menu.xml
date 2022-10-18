@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/current"
+        android:title="@string/current">
+        <menu>
+            <item
+                android:id="@+id/restart"
+                android:icon="@drawable/ic_more_time"
+                android:title="@string/restart_timer"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/shuffle_game_grid"
+                android:icon="@drawable/shufflegrid"
+                android:title="@string/shuffle_grid"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/shuffle_game_tray"
+                android:icon="@drawable/shuffletray"
+                android:title="@string/shuffle_tray"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/save_game"
+                android:icon="@drawable/ic_baseline_save_24"
+                android:title="@string/save_game"
+                app:showAsAction="ifRoom" />
+        </menu>
+    </item>
+
+    <item
+       android:title="@string/start"
+        app:showAsAction="never">
+    <menu>
+        <item
+            android:id="@+id/new_game_grid"
+            android:icon="@drawable/newgrid"
+            android:title="@string/start_grid"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/new_game_tray"
+            android:icon="@drawable/newtray"
+            android:title="@string/start_tray"
+            app:showAsAction="never" />
+
+    </menu>
+</item>
+
+
+<item
+android:title="@string/store_share_create"
+app:showAsAction="never">
+<menu>
+    <item
+        android:id="@+id/gamesList"
+        android:icon="@drawable/savedgames"
+        android:title="@string/stored_games"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/create_game"
+        android:icon="@drawable/creategame"
+        android:title="@string/create_new"
+        app:showAsAction="never" />
+
+
+</menu>
+
+</item>
+
+
+<item
+android:id="@+id/prefs"
+android:title="@string/prefs"
+app:showAsAction="never" />
+
+
+    <!-- Settings, should always be in the overflow -->
+
+
+    </menu>

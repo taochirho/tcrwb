@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tcr="http://schemas.android.com/apk/res-auto">
+
+    <item tcr:timer  = "true" android:drawable="@drawable/tile_start_timer" />
+    <item tcr:pause  = "true" android:drawable="@drawable/tile_start_pause" />
+    <item tcr:play  = "true" android:drawable="@drawable/tile_start_play"/>
+
+    <item android:drawable="@drawable/tile_start_timer"/>
+
+</selector>

@@ -1,0 +1,64 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Word Box Solitaire</string>
+    <string name="app_subtitle">Game: %s</string>
+    <string name="app_subtitle_list"> - saved games</string>
+    <string name="app_subtitle_create"> - create game</string>
+    <string name="games_list">Stored games</string>
+    <string name="start">New Game</string>
+    <string name="start_grid"> - grid</string>
+    <string name="start_tray"> -  tray</string>
+    <string name="shuffle_grid">Shuffle on grid</string>
+    <string name="shuffle_tray">Shuffle on tray</string>
+    <string name="shuffle">Shuffle</string>
+    <string name="unshuffle">Unshuffle</string>
+    <string name="clear">Clear</string>
+
+    <string name="save_game">Save</string>
+    <string name="store_share_create">Games(create &amp; share)</string>
+    <string name="create_new">Create game</string>
+
+    <string name="game">game</string>
+    <string name="answer">answer?</string>
+    <string name="saved">saved game</string>
+
+    <string name="target_time">Target time in minutes (5–20)</string>
+    <string name="share_puzzle">Share game</string>
+    <string name="stored_games">Saved games</string>
+
+    <string name="restore">Restore</string>
+    <string name="send">Send</string>
+    <string name="delete">Delete</string>
+
+    <string name="clear_games">Clear stored games</string>
+    <string name="return_to_game">Return to game</string>
+
+    <string name="current">This Game</string>
+    <string name="restart_timer">Restart timer</string>
+    <string name="timer_ended">⛔</string>
+
+    <string name="prefs">Preferences (Time &amp; Tiles)</string>
+    <string name="keyTimer">kd</string>
+    <string name="pref_Timer">Game Duration</string>
+
+    <string name="keyTiles">kt</string>
+    <string name="pref_Tiles">Number of Tiles</string>
+
+    <string name="keyGameCreator">kgc</string>
+    <string name="gameCreator">Game creator</string>
+    <string name="from">%s from: %s</string>
+    <string name="gameCreatorDefault">Set in Preferences</string>
+
+    <string name="hint_word">Take a Hint</string>
+
+    <!--  Toast messages-->
+
+    <string name="toast_game_saved">Game saved!</string>
+    <string name="toast_game_not_saved">Game not saved - no tiles!</string>
+    <string name="toast_only_digits">Numbers only</string>
+    <string name="toast_enter_between">Please enter 5 - 20 minutes</string>
+
+
+    <!--  Error messages-->
+
+
+</resources>

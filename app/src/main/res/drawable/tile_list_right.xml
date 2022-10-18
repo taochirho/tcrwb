@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--Drawable outline -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="@dimen/tile_list_stroke"
+                android:color="?attr/tile_border" />
+            <solid
+                android:color="?attr/tile_right" />
+
+        </shape>
+    </item>
+</layer-list>

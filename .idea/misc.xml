@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/ic_baseline_autorenew_24.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/ic_baseline_pause_circle_outline_24.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/ic_baseline_play_circle_24.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/ic_baseline_timer_24.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/ic_restore_24.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/ic_send_24.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/tile_game_empty.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/tile_game_selector.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/tile_game_tray.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/tile_game_wrong.xml" value="0.2505" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/tile_list_right.xml" value="0.118" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/tile_list_selector.xml" value="0.118" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/tile_list_tray.xml" value="0.118" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/drawable/timer_background.xml" value="0.118" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/font/brygada1918_italic_variablefont_wght.xml" value="0.28888888888888886" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/layout-land/games_list_row.xml" value="0.22178130511463845" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/layout-port/games_list_row.xml" value="0.36594202898550726" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/layout/activity_create_puzzle.xml" value="0.1" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/layout/create_game_fragment.xml" value="0.3197463768115942" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/layout/game_fragment.xml" value="0.2536231884057971" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/layout/games_list_fragment.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/layout/games_list_row.xml" value="0.35643115942028986" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/layout/grid_fragment.xml" value="0.2536231884057971" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/layout/tray_fragment.xml" value="0.2536231884057971" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/menu/boxset_games_list_menu.xml" value="0.30364583333333334" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/menu/boxset_menu.xml" value="0.30364583333333334" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/David/Documents/StudioProjects/testvm/app/src/main/res/xml/preferences.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

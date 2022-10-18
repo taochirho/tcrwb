@@ -1,0 +1,1005 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="textSize"
+            type="Float" />
+   </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/theGrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        android:background="?attr/grid_background"
+        >
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R0C0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+            android:background="@drawable/tile_game_selector"
+            android:gravity="center"
+            android:inputType="none"
+            
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R0C1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R0C1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+            android:background="@drawable/tile_game_selector"
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R0C2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R0C0"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R0C2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R0C3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R0C1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R0C3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R0C4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R0C2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R0C4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R0C5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R0C3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R0C5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R0C6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R0C4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R0C6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R0C5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R1C0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R1C1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/R0C0" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R1C1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R1C2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R1C0"
+            app:layout_constraintTop_toBottomOf="@id/R0C1" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R1C2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R1C3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R1C1"
+            app:layout_constraintTop_toBottomOf="@id/R0C2" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R1C3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R1C4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R1C2"
+            app:layout_constraintTop_toBottomOf="@id/R0C3" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R1C4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R1C5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R1C3"
+            app:layout_constraintTop_toBottomOf="@id/R0C4" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R1C5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R1C6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R1C4"
+            app:layout_constraintTop_toBottomOf="@id/R0C5" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R1C6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R1C5"
+            app:layout_constraintTop_toBottomOf="@id/R0C6" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R2C0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R2C1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/R1C0" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R2C1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R2C2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R2C0"
+            app:layout_constraintTop_toBottomOf="@id/R1C1" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R2C2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R2C3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R2C1"
+            app:layout_constraintTop_toBottomOf="@id/R1C2" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R2C3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R2C4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R2C2"
+            app:layout_constraintTop_toBottomOf="@id/R1C3" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R2C4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R2C5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R2C3"
+            app:layout_constraintTop_toBottomOf="@id/R1C4" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R2C5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R2C6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R2C4"
+            app:layout_constraintTop_toBottomOf="@id/R1C5" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R2C6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R2C5"
+            app:layout_constraintTop_toBottomOf="@id/R1C6" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R3C0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R3C1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/R2C0" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R3C1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R3C2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R3C0"
+            app:layout_constraintTop_toBottomOf="@id/R2C1" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R3C2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R3C3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R3C1"
+            app:layout_constraintTop_toBottomOf="@id/R2C2" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R3C3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R3C4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R3C2"
+            app:layout_constraintTop_toBottomOf="@id/R2C3" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R3C4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R3C5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R3C3"
+            app:layout_constraintTop_toBottomOf="@id/R2C4" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R3C5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R3C6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R3C4"
+            app:layout_constraintTop_toBottomOf="@id/R2C5" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R3C6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R3C5"
+            app:layout_constraintTop_toBottomOf="@id/R2C6" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R4C0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R4C1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/R3C0" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R4C1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R4C2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R4C0"
+            app:layout_constraintTop_toBottomOf="@id/R3C1" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R4C2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R4C3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R4C1"
+            app:layout_constraintTop_toBottomOf="@id/R3C2" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R4C3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R4C4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R4C2"
+            app:layout_constraintTop_toBottomOf="@id/R3C3" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R4C4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R4C5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R4C3"
+            app:layout_constraintTop_toBottomOf="@id/R3C4" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R4C5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R4C6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R4C4"
+            app:layout_constraintTop_toBottomOf="@id/R3C5" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R4C6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R4C5"
+            app:layout_constraintTop_toBottomOf="@id/R3C6" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R5C0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R5C1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/R4C0" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R5C1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R5C2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R5C0"
+            app:layout_constraintTop_toBottomOf="@id/R4C1" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R5C2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R5C3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R5C1"
+            app:layout_constraintTop_toBottomOf="@id/R4C2" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R5C3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R5C4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R5C2"
+            app:layout_constraintTop_toBottomOf="@id/R4C3" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R5C4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R5C5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R5C3"
+            app:layout_constraintTop_toBottomOf="@id/R4C4" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R5C5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R5C6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R5C4"
+            app:layout_constraintTop_toBottomOf="@id/R4C5" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R5C6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R5C5"
+            app:layout_constraintTop_toBottomOf="@id/R4C6" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R6C0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R6C1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/R5C0" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R6C1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R6C2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R6C0"
+            app:layout_constraintTop_toBottomOf="@id/R5C1" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R6C2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R6C3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R6C1"
+            app:layout_constraintTop_toBottomOf="@id/R5C2" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R6C3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R6C4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R6C2"
+            app:layout_constraintTop_toBottomOf="@id/R5C3" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R6C4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R6C5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R5C3"
+            app:layout_constraintTop_toBottomOf="@id/R5C4" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R6C5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/R6C6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R6C4"
+            app:layout_constraintTop_toBottomOf="@id/R5C5" />
+
+        <com.taochirho.testvm.ui.main.TCRTile
+            android:id="@+id/R6C6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/tile_margin"
+            android:layout_marginTop="@dimen/tile_margin"
+            android:layout_marginEnd="@dimen/tile_margin"
+            android:layout_marginBottom="@dimen/tile_margin"
+
+            android:background="@drawable/tile_game_selector"
+            
+            android:gravity="center"
+            android:inputType="none"
+            android:textSize="@{textSize}"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/R6C5"
+            app:layout_constraintTop_toBottomOf="@id/R5C6" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

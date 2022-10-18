@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/vm_nav"
+    app:startDestination="@id/gameFragment">
+
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.taochirho.testvm.ui.main.GameFragment"
+        android:label="@string/app_name">
+        <argument
+            android:name="gameID"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="restoreCurrent"
+            android:defaultValue="true"
+            app:argType="boolean" />
+
+        <action
+            android:id="@+id/action_gameFragment_to_gamesList"
+            app:destination="@id/gamesList" />
+        <action
+            android:id="@+id/action_gameFragment_to_TCRPrefsFragment"
+            app:destination="@id/TCRPrefsFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/gamesList"
+        android:name="com.taochirho.testvm.ui.main.GamesListFragment"
+        android:label="@string/games_list" >
+        <action
+            android:id="@+id/action_gamesList_to_gameFragment"
+            app:destination="@id/gameFragment" >
+
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/TCRPrefsFragment"
+        android:name="com.taochirho.testvm.ui.main.TCRPrefsFragment"
+        android:label="TCRPrefsFragment" >
+        <action
+            android:id="@+id/action_TCRPrefsFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
+</navigation>

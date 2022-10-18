@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+android:id="@+id/main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintBottom_toBottomOf="parent"
+
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/TCR_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarSizePortrait"
+        android:minHeight="@dimen/actionBarSizePortrait"
+        android:background="?attr/toolbar_background"
+
+        android:elevation="4dp"
+        android:theme="@style/Theme.Testvm"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/TCRToolBarTheme"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/toolbar_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <TextView
+                android:id="@+id/wb_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/titleTextColor"
+
+                android:gravity="center"
+                android:inputType="none"
+
+                android:layout_marginTop="4dp"
+
+                android:text="@string/app_name"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@id/wb_subtitle"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/wb_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/subtitleTextColor"
+                android:gravity="center"
+                android:inputType="none"
+
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@id/wb_title"
+                app:layout_constraintBottom_toTopOf="@id/wb_gameCreator"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/wb_gameCreator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="2dp"
+                android:text="fooey Sawcliffe"
+                android:textColor="?attr/subtitleTextColor"
+
+                android:gravity="center"
+                android:inputType="none"
+
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@id/wb_subtitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+
+            <TextView
+                android:id="@+id/timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/timer_background"
+                android:gravity="center"
+
+                android:inputType="none"
+                android:minWidth="72dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="2dp"
+                android:paddingBottom="8dp"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/score"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_bias="4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/timer_background"
+                android:gravity="center"
+                android:inputType="none"
+                android:minWidth="48dp"
+
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/timer"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+<androidx.fragment.app.FragmentContainerView
+
+    android:id="@+id/grid_container"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:layout_constraintTop_toBottomOf="@id/TCR_toolbar"
+    app:layout_constraintBottom_toTopOf="@id/tray_container"
+    app:layout_constraintDimensionRatio="1:1"
+    app:layout_constraintVertical_chainStyle="spread_inside"/>
+
+<androidx.fragment.app.FragmentContainerView
+
+    android:id="@+id/tray_container"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:layout_constraintTop_toBottomOf="@id/grid_container"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.taochirho.testvm.ui.main.TCRNamePref
+        android:defaultValue="@string/gameCreatorDefault"
+        android:key="@string/keyGameCreator"
+        android:title="@string/gameCreator"
+        />
+
+    <com.taochirho.testvm.ui.main.TCRTimePref
+        android:key="@string/keyTimer"
+        android:title="@string/pref_Timer"
+        android:defaultValue="@integer/default_timer"
+        app:min="@integer/min_timer"
+        android:max="@integer/max_timer"
+        app:seekBarIncrement="1"
+        app:showSeekBarValue="true"
+         />
+
+    <com.taochirho.testvm.ui.main.TCRTilesPref
+        android:key="@string/keyTiles"
+        android:title="@string/pref_Tiles"
+        android:defaultValue="@integer/default_tile_count"
+        app:min="@integer/min_tiles"
+        android:max="@integer/max_tiles"
+        app:seekBarIncrement="1"
+        app:showSeekBarValue="true"/>
+
+</PreferenceScreen>

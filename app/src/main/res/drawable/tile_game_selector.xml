@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tcr="http://schemas.android.com/apk/res-auto">
+
+    <item tcr:in_tray  = "true" android:drawable="@drawable/tile_game_tray" />
+    <item tcr:entered  = "true" android:drawable="@drawable/tile_game_entered" />
+    <item tcr:right  = "true" android:drawable="@drawable/tile_game_right"/>
+    <item tcr:nearly_right  = "true" android:drawable="@drawable/tile_game_nearly_right" />
+    <item tcr:wrong  = "true" android:drawable="@drawable/tile_game_wrong"/>
+    <item android:drawable="@drawable/tile_game_empty"/>
+
+</selector>

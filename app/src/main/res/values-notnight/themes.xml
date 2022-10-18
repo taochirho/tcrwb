@@ -1,0 +1,59 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.Testvm" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+
+        <item name="grid_background">@color/grid_background_day</item>
+        <item name="tray_background">@color/tray_background_day</item>
+        <item name="tray_divider">@color/tray_divider_day</item>
+        <item name="tray_divider_highlight">@color/tray_divider_highlight_day</item>
+        <item name="list_background">@color/list_background_day</item>
+        <item name="list_game_background">@color/list_game_background_day</item>
+        <item name="list_tray_background">@color/list_tray_background_day</item>
+
+        <item name="restore_tint">@color/restore_tint_day</item>
+
+        <item name="android:textColor"> @color/textColor_day</item>
+        <item name="android:textColorPrimary"> @color/textColorPrimary_day </item>
+        <item name="android:textColorSecondary"> @color/textColorSecondary_day </item>
+
+        <item name="titleTextColor"> @color/textColorPrimary_day </item>
+        <item name="subtitleTextColor"> @color/textColorSecondary_day </item>
+
+        <item name="toolbar_background">@color/toolbar_background_day</item>
+
+
+        <item name="tile_empty">@color/tile_empty</item>
+        <item name="tile_entered">@color/tile_entered_day</item>
+
+        <item name="tile_swap_border">@color/tile_swap_border_day</item>
+        <item name="tile_swap_background">@color/tile_swap_background_day</item>
+        <item name="tile_swap_background_entered">@color/tile_swap_background_entered_day</item>
+
+        <item name="tile_start_border">@color/tile_start_border_day</item>
+        <item name="tile_start_background">@color/tile_start_background_day</item>
+
+        <item name="tile_border">@color/tile_border_day</item>
+        <item name="tile_right">@color/tile_right_day</item>
+        <item name="tile_nearly_right">@color/tile_nearly_right_day</item>
+        <item name="tile_wrong">@color/tile_wrong_day</item>
+        <item name="tile_tray">@color/tile_tray_day</item>
+
+        <item name="menu_background">@color/menu_background_day</item>
+    </style>
+
+    <style name="TCRToolBarTheme">
+        <item name="actionOverflowMenuStyle">@style/TCRPopupMenu</item>
+        <item name="android:textColorPrimary">@color/menu_text_day</item>
+        <item name="android:textColorSecondary">@color/menu_textSecondary_day</item>
+
+    </style>
+
+    <style name="TCRPopupMenu"  parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:popupBackground">@drawable/custom_popup_background</item>
+    </style>
+
+
+
+
+</resources>
