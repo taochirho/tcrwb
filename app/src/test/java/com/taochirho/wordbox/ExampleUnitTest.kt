@@ -1,4 +1,4 @@
-package com.taochirho.testvm
+package com.taochirho.wordbox
 
 import org.junit.Test
 

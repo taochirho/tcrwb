@@ -1,5 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Word Box Solitaire</string>
+<resources>
+    <string name="app_name">Ford Box Solitaire</string>
     <string name="app_subtitle">Game: %s</string>
     <string name="app_subtitle_list"> - saved games</string>
     <string name="app_subtitle_create"> - create game</string>
@@ -55,7 +55,7 @@
     <string name="toast_game_saved">Game saved!</string>
     <string name="toast_game_not_saved">Game not saved - no tiles!</string>
     <string name="toast_only_digits">Numbers only</string>
-    <string name="toast_enter_between">Please enter 5 - 20 minutes</string>
+    <string name="toast_enter_between">Please enter 5 &#8211; 20 minutes</string>
 
 
     <!--  Error messages-->

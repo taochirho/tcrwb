@@ -18,7 +18,7 @@
             android:minHeight="@dimen/actionBarSizePortrait"
             android:background="?attr/toolbar_background"
             android:elevation="4dp"
-            android:theme="@style/Theme.Testvm"
+            android:theme="@style/Theme.TCRWordbox"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:popupTheme="@style/TCRToolBarTheme"

@@ -6,37 +6,34 @@
     <data>
         <import type="java.util.List" />
         <import type="android.view.View" />
-        <import type="com.taochirho.testvm.database.Tile"/>
-        <import type="com.taochirho.testvm.database.TileState"/>
+        <import type="com.taochirho.wordbox.database.Tile"/>
+        <import type="com.taochirho.wordbox.database.TileState"/>
 
         <variable
             name="toggleLetterAsterixClickListener"
-            type="com.taochirho.testvm.ui.main.GamesListAdapter.GameAsterixToggleListener" />
+            type="com.taochirho.wordbox.ui.main.GamesListAdapter.GameAsterixToggleListener" />
 
         <variable
             name="deleteClickListener"
-            type="com.taochirho.testvm.ui.main.GamesListAdapter.GameDeleteListener" />
+            type="com.taochirho.wordbox.ui.main.GamesListAdapter.GameDeleteListener" />
 
         <variable
             name="sendClickListener"
-            type="com.taochirho.testvm.ui.main.GamesListAdapter.GameSendListener" />
+            type="com.taochirho.wordbox.ui.main.GamesListAdapter.GameSendListener" />
 
         <variable
             name="restoreClickListener"
-            type="com.taochirho.testvm.ui.main.GamesListAdapter.GameRestoreListener" />
+            type="com.taochirho.wordbox.ui.main.GamesListAdapter.GameRestoreListener" />
 
         <variable
             name="grid"
-            type="List&lt;com.taochirho.testvm.database.Tile>" />
-
-        <variable
+            type="List&lt;com.taochirho.wordbox.database.Tile>" />
+       <variable
             name="tray"
-            type="List&lt;com.taochirho.testvm.database.Tile>" />
-
-
+           type="List&lt;com.taochirho.wordbox.database.Tile>" />
         <variable
             name="game"
-            type="com.taochirho.testvm.database.Game" />
+            type="com.taochirho.wordbox.database.Game" />
 
         <variable
             name="formattedSavedDate"
@@ -89,7 +86,7 @@
 
             >
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R0C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -113,7 +110,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tileState="@{grid[0].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R0C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -134,7 +131,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tileState="@{grid[1].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R0C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -154,7 +151,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tileState="@{grid[2].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R0C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -174,7 +171,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tileState="@{grid[3].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R0C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -194,7 +191,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tileState="@{grid[4].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R0C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -214,7 +211,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tileState="@{grid[5].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R0C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -234,7 +231,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tileState="@{grid[6].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R1C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -255,7 +252,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R0C0"
                 app:tileState="@{grid[7].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R1C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -275,7 +272,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R0C1"
                 app:tileState="@{grid[8].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R1C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -295,7 +292,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R0C2"
                 app:tileState="@{grid[9].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R1C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -315,7 +312,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R0C3"
                 app:tileState="@{grid[10].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R1C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -335,7 +332,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R0C4"
                 app:tileState="@{grid[11].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R1C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -355,7 +352,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R0C5"
                 app:tileState="@{grid[12].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R1C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -375,7 +372,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R0C6"
                 app:tileState="@{grid[13].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R2C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -396,7 +393,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R1C0"
                 app:tileState="@{grid[14].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R2C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -416,7 +413,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R1C1"
                 app:tileState="@{grid[15].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R2C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -436,7 +433,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R1C2"
                 app:tileState="@{grid[16].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R2C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -456,7 +453,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R1C3"
                 app:tileState="@{grid[17].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R2C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -476,7 +473,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R1C4"
                 app:tileState="@{grid[18].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R2C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -496,7 +493,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R1C5"
                 app:tileState="@{grid[19].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R2C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -516,7 +513,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R1C6"
                 app:tileState="@{grid[20].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R3C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -537,7 +534,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R2C0"
                 app:tileState="@{grid[21].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R3C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -557,7 +554,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R2C1"
                 app:tileState="@{grid[22].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R3C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -577,7 +574,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R2C2"
                 app:tileState="@{grid[23].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R3C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -597,7 +594,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R2C3"
                 app:tileState="@{grid[24].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R3C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -617,7 +614,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R2C4"
                 app:tileState="@{grid[25].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R3C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -637,7 +634,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R2C5"
                 app:tileState="@{grid[26].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R3C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -657,7 +654,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R2C6"
                 app:tileState="@{grid[27].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R4C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -678,7 +675,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R3C0"
                 app:tileState="@{grid[28].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R4C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -698,7 +695,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R3C1"
                 app:tileState="@{grid[29].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R4C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -718,7 +715,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R3C2"
                 app:tileState="@{grid[30].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R4C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -738,7 +735,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R3C3"
                 app:tileState="@{grid[31].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R4C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -758,7 +755,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R3C4"
                 app:tileState="@{grid[32].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R4C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -778,7 +775,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R3C5"
                 app:tileState="@{grid[33].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R4C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -798,7 +795,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R3C6"
                 app:tileState="@{grid[34].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R5C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -819,7 +816,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R4C0"
                 app:tileState="@{grid[35].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R5C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -839,7 +836,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R4C1"
                 app:tileState="@{grid[36].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R5C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -859,7 +856,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R4C2"
                 app:tileState="@{grid[37].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R5C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -879,7 +876,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R4C3"
                 app:tileState="@{grid[38].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R5C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -899,7 +896,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R4C4"
                 app:tileState="@{grid[39].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R5C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -919,7 +916,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R4C5"
                 app:tileState="@{grid[40].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R5C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -939,7 +936,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R4C6"
                 app:tileState="@{grid[41].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R6C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -960,7 +957,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R5C0"
                 app:tileState="@{grid[42].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R6C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -980,7 +977,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R5C1"
                 app:tileState="@{grid[43].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R6C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1000,7 +997,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R5C2"
                 app:tileState="@{grid[44].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R6C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1020,7 +1017,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R5C3"
                 app:tileState="@{grid[45].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R6C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1040,7 +1037,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R5C4"
                 app:tileState="@{grid[46].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R6C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1060,7 +1057,7 @@
                 app:layout_constraintTop_toBottomOf="@id/R5C5"
                 app:tileState="@{grid[47].state}" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/R6C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1153,7 +1150,7 @@
                 android:orientation="vertical" />
 
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T0C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1178,7 +1175,7 @@
 
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T0C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1203,7 +1200,7 @@
 
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T0C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1226,7 +1223,7 @@
                 app:layout_constraintStart_toEndOf="@+id/G2"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T0C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1247,7 +1244,7 @@
                 app:layout_constraintStart_toEndOf="@+id/G3"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T0C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1268,7 +1265,7 @@
                 app:layout_constraintStart_toEndOf="@+id/G4"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T0C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1289,7 +1286,7 @@
                 app:layout_constraintStart_toEndOf="@+id/G5"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T0C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1313,7 +1310,7 @@
                 app:layout_constraintStart_toEndOf="@+id/G6"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T1C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1337,7 +1334,7 @@
                 app:layout_constraintStart_toStartOf="@id/G0"
                 app:layout_constraintTop_toBottomOf="@id/T0C0" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T1C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1360,7 +1357,7 @@
                 app:layout_constraintStart_toEndOf="@+id/G1"
                 app:layout_constraintTop_toBottomOf="@id/T0C1" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T1C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1383,7 +1380,7 @@
                 app:layout_constraintStart_toEndOf="@id/G2"
                 app:layout_constraintTop_toBottomOf="@id/T0C2" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T1C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1407,7 +1404,7 @@
                 app:layout_constraintStart_toEndOf="@id/G3"
                 app:layout_constraintTop_toBottomOf="@id/T0C3" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T1C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1430,7 +1427,7 @@
                 app:layout_constraintStart_toEndOf="@id/G4"
                 app:layout_constraintTop_toBottomOf="@id/T0C4" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T1C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1454,7 +1451,7 @@
                 app:layout_constraintStart_toEndOf="@id/G5"
                 app:layout_constraintTop_toBottomOf="@id/T0C5" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T1C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1478,7 +1475,7 @@
                 app:layout_constraintStart_toEndOf="@id/G6"
                 app:layout_constraintTop_toBottomOf="@id/T0C6" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T2C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1503,7 +1500,7 @@
                 app:layout_constraintStart_toStartOf="@id/G0"
                 app:layout_constraintTop_toBottomOf="@id/T1C0" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T2C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1526,7 +1523,7 @@
                 app:layout_constraintStart_toEndOf="@id/G1"
                 app:layout_constraintTop_toBottomOf="@id/T1C1" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T2C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1549,7 +1546,7 @@
                 app:layout_constraintStart_toEndOf="@id/G2"
                 app:layout_constraintTop_toBottomOf="@id/T1C2" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T2C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1573,7 +1570,7 @@
                 app:layout_constraintStart_toEndOf="@id/G3"
                 app:layout_constraintTop_toBottomOf="@id/T1C3" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T2C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1597,7 +1594,7 @@
                 app:layout_constraintStart_toEndOf="@id/G4"
                 app:layout_constraintTop_toBottomOf="@id/T1C4" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T2C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1620,7 +1617,7 @@
                 app:layout_constraintStart_toEndOf="@id/G5"
                 app:layout_constraintTop_toBottomOf="@id/T1C5" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T2C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1644,7 +1641,7 @@
                 app:layout_constraintStart_toEndOf="@id/G6"
                 app:layout_constraintTop_toBottomOf="@id/T1C6" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T3C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1668,7 +1665,7 @@
                 app:layout_constraintStart_toStartOf="@id/G0"
                 app:layout_constraintTop_toBottomOf="@id/T2C0" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T3C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1691,7 +1688,7 @@
                 app:layout_constraintStart_toEndOf="@id/G1"
                 app:layout_constraintTop_toBottomOf="@id/T2C1" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T3C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1714,7 +1711,7 @@
                 app:layout_constraintStart_toEndOf="@id/G2"
                 app:layout_constraintTop_toBottomOf="@id/T2C2" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T3C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1737,7 +1734,7 @@
                 app:layout_constraintStart_toEndOf="@id/G3"
                 app:layout_constraintTop_toBottomOf="@id/T2C3" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T3C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1760,7 +1757,7 @@
                 app:layout_constraintStart_toEndOf="@id/G4"
                 app:layout_constraintTop_toBottomOf="@id/T2C4" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T3C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1783,7 +1780,7 @@
                 app:layout_constraintStart_toEndOf="@id/G5"
                 app:layout_constraintTop_toBottomOf="@id/T2C5" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T3C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1806,7 +1803,7 @@
                 app:layout_constraintStart_toEndOf="@id/G6"
                 app:layout_constraintTop_toBottomOf="@id/T2C6" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T4C0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1830,7 +1827,7 @@
                 app:layout_constraintStart_toStartOf="@id/G0"
                 app:layout_constraintTop_toBottomOf="@id/T3C0" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T4C1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1853,7 +1850,7 @@
                 app:layout_constraintStart_toEndOf="@id/G1"
                 app:layout_constraintTop_toBottomOf="@id/T3C1" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T4C2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1876,7 +1873,7 @@
                 app:layout_constraintStart_toEndOf="@id/G2"
                 app:layout_constraintTop_toBottomOf="@id/T3C2" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T4C3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1900,7 +1897,7 @@
                 app:layout_constraintStart_toEndOf="@id/G3"
                 app:layout_constraintTop_toBottomOf="@id/T3C3" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T4C4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1923,7 +1920,7 @@
                 app:layout_constraintStart_toEndOf="@id/G4"
                 app:layout_constraintTop_toBottomOf="@id/T3C4" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T4C5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -1945,7 +1942,7 @@
                 app:layout_constraintStart_toEndOf="@id/G5"
                 app:layout_constraintTop_toBottomOf="@id/T3C5" />
 
-            <com.taochirho.testvm.ui.main.TCRTile
+            <com.taochirho.wordbox.ui.main.TCRTile
                 android:id="@+id/T4C6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

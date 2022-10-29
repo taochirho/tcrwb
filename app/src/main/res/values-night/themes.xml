@@ -1,6 +1,6 @@
 <resources >
     <!-- Base application theme. -->
-    <style name="Theme.Testvm" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.TCRWordbox" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <item name="grid_background">@color/grid_background_night</item>
         <item name="tray_background">@color/tray_background_night</item>

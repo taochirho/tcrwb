@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.taochirho.testvm.ui.main.GameFragment"
+        android:name="com.taochirho.wordbox.ui.main.GameFragment"
         android:label="@string/app_name">
         <argument
             android:name="gameID"
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/gamesList"
-        android:name="com.taochirho.testvm.ui.main.GamesListFragment"
+        android:name="com.taochirho.wordbox.ui.main.GamesListFragment"
         android:label="@string/games_list" >
         <action
             android:id="@+id/action_gamesList_to_gameFragment"
@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/TCRPrefsFragment"
-        android:name="com.taochirho.testvm.ui.main.TCRPrefsFragment"
+        android:name="com.taochirho.wordbox.ui.main.TCRPrefsFragment"
         android:label="TCRPrefsFragment" >
         <action
             android:id="@+id/action_TCRPrefsFragment_to_gameFragment"

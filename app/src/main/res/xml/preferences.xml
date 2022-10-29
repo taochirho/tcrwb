@@ -2,13 +2,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.taochirho.testvm.ui.main.TCRNamePref
+    <com.taochirho.wordbox.ui.main.TCRNamePref
         android:defaultValue="@string/gameCreatorDefault"
         android:key="@string/keyGameCreator"
         android:title="@string/gameCreator"
         />
 
-    <com.taochirho.testvm.ui.main.TCRTimePref
+    <com.taochirho.wordbox.ui.main.TCRTimePref
         android:key="@string/keyTimer"
         android:title="@string/pref_Timer"
         android:defaultValue="@integer/default_timer"
@@ -18,7 +18,7 @@
         app:showSeekBarValue="true"
          />
 
-    <com.taochirho.testvm.ui.main.TCRTilesPref
+    <com.taochirho.wordbox.ui.main.TCRTilesPref
         android:key="@string/keyTiles"
         android:title="@string/pref_Tiles"
         android:defaultValue="@integer/default_tile_count"

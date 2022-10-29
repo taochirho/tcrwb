@@ -14,7 +14,8 @@ android {
     compileSdkVersion 33
 
     defaultConfig {
-        applicationId "com.taochirho.testvm"
+        applicationId "com.taochirho.wordbox"
+
         minSdkVersion 26
         targetSdkVersion 32
         versionCode 1
@@ -67,7 +68,7 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
-    namespace 'com.taochirho.testvm'
+    namespace 'com.taochirho.wordbox'
 
 }
 

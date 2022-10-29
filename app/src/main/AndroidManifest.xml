@@ -2,13 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name=".application.TestVMApplication"
+        android:name=".application.Wordbox"
         android:allowBackup="true"
         android:icon="@mipmap/wb_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/wb_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Testvm">
+        android:theme="@style/Theme.TCRWordbox">
         <activity
             android:name=".CreatePuzzle"
             android:exported="false" />

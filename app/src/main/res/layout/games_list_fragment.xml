@@ -6,7 +6,7 @@
     <data>
         <variable
             name="gamesListModel"
-            type="com.taochirho.testvm.model.GamesListModel" />
+            type="com.taochirho.wordbox.model.GamesListModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -21,7 +21,7 @@
         android:background="?attr/toolbar_background"
 
         android:elevation="4dp"
-        android:theme="@style/Theme.Testvm"
+        android:theme="@style/Theme.TCRWordbox"
         app:popupTheme="@style/TCRToolBarTheme"
 
         app:layout_constraintStart_toStartOf="parent"
