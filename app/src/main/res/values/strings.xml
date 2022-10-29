@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ford Box Solitaire</string>
+    <string name="app_name">Gord Box Solitaire</string>
     <string name="app_subtitle">Game: %s</string>
     <string name="app_subtitle_list"> - saved games</string>
     <string name="app_subtitle_create"> - create game</string>
