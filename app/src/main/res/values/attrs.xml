@@ -67,7 +67,7 @@
     <attr name="tile_entered" format="color"/>
 
     <attr name="timerOnBackground" format="color"/>
-
+`
     <attr name="tile_swap_border" format="color"/>
     <attr name="tile_swap_background" format="color"/>
 
