@@ -4,7 +4,7 @@
     android:id="@+id/tray"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/tray_background">
+    android:background="?attr/list_tray_background">
 
 
 

@@ -1,11 +1,17 @@
 package com.taochirho.wordbox.ui.main
 
+import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,17 +23,26 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.color.MaterialColors
+import com.google.gson.Gson
 import com.taochirho.wordbox.R
+import com.taochirho.wordbox.application.GAME_STATUS
 import com.taochirho.wordbox.application.Wordbox
+import com.taochirho.wordbox.database.*
 import com.taochirho.wordbox.databinding.GamesListFragmentBinding
 import com.taochirho.wordbox.model.GamesListModel
 import com.taochirho.wordbox.model.GamesListModelFactory
+import kotlinx.coroutines.*
+import java.util.*
 
 
-class GamesListFragment: Fragment() {
+
+class GamesListFragment : Fragment() {
     //    private val TAG = "GamesListFragment"
     lateinit var binding: GamesListFragmentBinding
     private lateinit var gamesListVM: GamesListModel
+    private val glfJob = Job()
+    private val glfScope = CoroutineScope(Dispatchers.Main + glfJob)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,10 +62,10 @@ class GamesListFragment: Fragment() {
 
 
         val adapter = GamesListAdapter(
-            GamesListAdapter.GameDeleteListener { game -> gamesListVM.onGameDeleteClicked(game) },
-            GamesListAdapter.GameSendListener { uid -> gamesListVM.onGameSendClicked(uid) },
-            GamesListAdapter.GameRestoreListener { uid -> gamesListVM.onGameRestoreClicked(uid) },
-            GamesListAdapter.GameAsterixToggleListener { game -> gamesListVM.onGameToggleLetterClicked(game) })
+            GamesListAdapter.GameDeleteListener { game -> onGameDeleteClicked(game) },
+            GamesListAdapter.GameSendListener { uid -> onGameSendClicked(uid) },
+            GamesListAdapter.GameRestoreListener { uid -> onGameRestoreClicked(uid) },
+            GamesListAdapter.GameStarToggleListener { game -> onGameToggleLetterClicked(game) })
 
 
         binding.gamesList.adapter = adapter
@@ -86,7 +101,6 @@ class GamesListFragment: Fragment() {
                 gamesListVM.onNavigatedToGame()
             }
         }
-
         return binding.root
     }
 
@@ -98,13 +112,21 @@ class GamesListFragment: Fragment() {
             binding.TCRListToolbar.title = resources.getString(R.string.app_name)
             binding.TCRListToolbar.subtitle = resources.getString(R.string.app_subtitle_list)
         } else {
-            val title =  resources.getString(R.string.app_name)
-            val subTitle =  resources.getString(R.string.app_subtitle_list)
+            val title = resources.getString(R.string.app_name)
+            val subTitle = resources.getString(R.string.app_subtitle_list)
 
             val newTitle = SpannableString("$title $subTitle")
-            newTitle.setSpan(ForegroundColorSpan(MaterialColors.getColor(requireContext(), R.attr.subtitleTextColor, Color.MAGENTA)), 18, newTitle.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-           // newTitle.setSpan(RelativeSizeSpan(0.8f),title.length + 1 , newTitle.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        binding.TCRListToolbar.title = newTitle
+            newTitle.setSpan(
+                ForegroundColorSpan(
+                    MaterialColors.getColor(
+                        requireContext(),
+                        R.attr.subtitleTextColor,
+                        Color.MAGENTA
+                    )
+                ), 18, newTitle.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            // newTitle.setSpan(RelativeSizeSpan(0.8f),title.length + 1 , newTitle.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            binding.TCRListToolbar.title = newTitle
         }
 
         binding.TCRListToolbar.setOnMenuItemClickListener {
@@ -117,6 +139,54 @@ class GamesListFragment: Fragment() {
                     true
                 }
             }
+        }
+    }
+
+    override fun onDestroy() {
+        glfJob.cancel()
+        super.onDestroy()
+    }
+
+    private fun onGameDeleteClicked(game: Game) {
+        gamesListVM.gameDelete(game)
+    }
+
+    private fun onGameRestoreClicked(uid: Int) {
+        gamesListVM.gameRestore(uid)
+    }
+
+    private fun onGameToggleLetterClicked(game: Game) {
+        gamesListVM.gameToggleLetter(game)
+    }
+
+    private fun onGameSendClicked(uid: Int) {
+        glfScope.launch {
+
+            val game = gamesListVM.getGame(uid)
+
+            val sentGame = SentGame(
+                game.timeLeft,
+                game.gameFrom,
+                game.gameTag,
+                game.dateSaved,
+                game.status,
+                Converters().toStringFromArrayTiles(game.gameTiles)
+            )
+
+            val json = Gson().toJson(sentGame)
+
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                //   component =  ComponentName(this@MainActivity.baseContext,  MainActivity::class.java)
+                putExtra(Intent.EXTRA_TEXT, json)
+                putExtra(Intent.EXTRA_TITLE, "Wordbox from Dave Rawcliffe")
+                type = "text/json"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            context?.let { ContextCompat.startActivity(it, shareIntent, null) }
         }
     }
 }

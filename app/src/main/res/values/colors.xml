@@ -1,42 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="tile_empty">#00000000</color>
+    <color name="Black">#FF131619</color>
+    <color name="White">#FFFFFFFF</color>
+
+    <color name="BlueGray900">#FF263238</color>
+    <color name="BlueGray800">#FF37474F</color>
+    <color name="BlueGray700">#FF455A64</color>
+    <color name="BlueGray600">#FF546E7A</color>
+    <color name="BlueGray500">#FF607D8B</color>
+    <color name="BlueGray400">#FF78909C</color>
+    <color name="BlueGray300">#FF90A4AE</color>
+    <color name="BlueGray200">#FFB0BEC5</color>
+    <color name="BlueGray100">#FFCFD8DC</color>
+    <color name="BlueGray50">#FFECEFF1</color>
+
+    <color name="LightGreenA700">#FF64DD17</color>
+    <color name="LightGreenA400">#FF76FF03</color>
+    <color name="LightGreenA200">#FFB2FF59</color>
+    <color name="LightGreenA100">#FFF4FF81</color>
+    <color name="LightGreen900">#FF33691E</color>
+    <color name="LightGreen800">#FF558B2F</color>
+    <color name="LightGreen700">#FF689F38</color>
+    <color name="LightGreen600">#FF7CB342</color>
+    <color name="LightGreen500">#FF8BC34A</color>
+    <color name="LightGreen400">#FF9CCC65</color>
+    <color name="LightGreen300">#FFAED581</color>
+    <color name="LightGreen200">#FFC5E1A5</color>
+    <color name="LightGreen100">#FFDCEDC8</color>
+    <color name="LightGreen50">#FFF1F8E9</color>
+
+    <color name="Amber300">#FFFFD54F</color>
+    <color name="Amber600">#FFFFB300</color>
+
+    <color name="Red300">#FFE57373</color>
+    <color name="Red600">#FFE53935</color>
+
+    <color name="DeepPurple300">#FFBA68C8</color>
+    <color name="DeepPurple600">#FF5E35B1</color>
+
+
     
-// Colours - day
+    
+    
+    
+    
+    
+    
+    
+    <color name="tile_empty">#00000000</color>
 
-    <color name="grid_background_day">#f8fedc</color>
-    <color name="list_background_day">#DDEAFC</color>
-    <color name="list_game_background_day">#7294B2</color>
-    <color name="list_tray_background_day">#7294B2</color>
-    <color name="toolbar_background_day">#d8f9da</color>
-    <color name="tray_background_day">#d8f9da</color>
-    <color name="tray_divider_day">#b3d6b7</color>
-    <color name="tray_divider_highlight_day">#91b495</color>
-
-    <color name="restore_tint_day">#489b36</color>
-
-    <color name="textColor_day">#0d1d0e</color>
-    <color name="textColorPrimary_day">#489b36</color>
-    <color name="textColorSecondary_day">#b33f4a</color>
-
-    <color name="tile_entered_day">#f8b26b</color>
+    // Colours - day
 
 
-    <color name="tile_border_day">#ff2f4f4f</color>
-    <color name="tile_right_day">#48f000</color>
-    <color name="tile_nearly_right_day">#04a8d6</color>
-    <color name="tile_wrong_day">#f8002c</color>
-    <color name="tile_tray_day">#dda3af9e</color>
-
-    <color name="tile_swap_border_day">#ff000000</color>
-    <color name="tile_swap_background_day">#ffad74a8</color>
-    <color name="tile_swap_background_entered_day">#ff00ff00</color>
-
-    <color name="tile_start_border_day">#fafffa</color>
-    <color name="tile_start_background_day">#bcdcbc</color>
-
-    <color name="menu_background_day">#d8f9da</color>
     <color name="menu_text_day">#489b36</color>
     <color name="menu_textSecondary_day">#546100</color>
 
@@ -57,15 +73,15 @@
     <color name="textColorPrimary_night">#74e600</color>
     <color name="textColorSecondary_night">#b9d95d</color>
 
-
     <color name="tile_entered_night">#ffa3af9e</color>
-
-
     <color name="tile_border_night">#F4FCF1</color>
     <color name="tile_right_night">#228e03</color>
     <color name="tile_nearly_right_night">#245f8f</color>
     <color name="tile_wrong_night">#980317</color>
     <color name="tile_tray_night">#ffa3af9e</color>
+
+    <color name="letter_color_grid_night">#ffffff00</color>
+    <color name="letter_color_tray_night">#ff00ffff </color>
 
     <color name="tile_swap_border_night">#ff000000</color>
     <color name="tile_swap_background_night">#ffad74a8</color>
@@ -73,9 +89,7 @@
 
     <color name="tile_start_border_night">#74e600</color>
     <color name="tile_start_background_night">#7B9971</color>
-
-
-
+    <color name="button_background_night">#3F4A3C</color>
     <color name="menu_background_night">#7B9971</color>
     <color name="menu_text_night">#F6EDD9</color> 
     <color name="menu_textSecondary_night">#F0FDEC</color>

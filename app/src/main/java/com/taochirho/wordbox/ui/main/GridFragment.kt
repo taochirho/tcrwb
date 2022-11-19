@@ -54,7 +54,7 @@ class GridFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View {
         val application = requireNotNull(this.activity).application as Wordbox
-        viewModel = activity?.let { ViewModelProvider(it.viewModelStore, GameModelFactory(application)).get(GameModel::class.java) }!!
+        viewModel = activity?.let { ViewModelProvider(it.viewModelStore, GameModelFactory(application))[GameModel::class.java] }!!
 
         binding = DataBindingUtil.inflate(inflater, R.layout.grid_fragment, container, false)
         gridArray = arrayOf(

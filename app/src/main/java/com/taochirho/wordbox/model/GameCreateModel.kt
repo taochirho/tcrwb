@@ -2,6 +2,7 @@ package com.taochirho.wordbox.model
 
 
 import android.app.Application
+import android.util.Log
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.*
 import androidx.preference.PreferenceManager
@@ -24,8 +25,7 @@ data class UIState(
 
 open class Event<out T>(private val content: T) {
 
-    var hasBeenHandled = false
-        private set // Allow external read but not write
+    private var hasBeenHandled = false
 
     /**
      * Returns the content and prevents its use again.
@@ -39,12 +39,12 @@ open class Event<out T>(private val content: T) {
         }
     }
 
-   /*
-     /**
-     * Returns the content, even if it's already been handled.
-     **/
-    fun peekContent(): T = content
-    */
+    /*
+      /**
+      * Returns the content, even if it's already been handled.
+      **/
+     fun peekContent(): T = content
+     */
 }
 
 class GameCreateModel(application: Wordbox) : AndroidViewModel(application) {
@@ -61,22 +61,13 @@ class GameCreateModel(application: Wordbox) : AndroidViewModel(application) {
 
     private val shuffledLetters = CharArray(49) { '\u0020' } // u0020 is unicode space
 
-
-    //private val initialLetters = "ABQDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVW".toCharArray()
-    /* private val initialLetters = CharArray(49){ '\u0020' }  // \u0020 is unicode space
-
-     private val _letters = Array<MutableLiveData<Char>>(uiState.rows * uiState.cols) { i ->
-         MutableLiveData(initialLetters[i])
-     }
-     private val letters = Array<LiveData<Char>>(uiState.rows * uiState.cols) { i -> _letters[i] }*/
-
     private val _gameDuration: MutableLiveData<Int> = MutableLiveData(0)
     val gameDuration: LiveData<Int> = _gameDuration
 
     private val _toastMsg = MutableLiveData<Event<TOAST_MSGS>>()
     val toastMsg: LiveData<Event<TOAST_MSGS>> = _toastMsg
 
-    fun setToastMsg(msg : TOAST_MSGS){
+    fun setToastMsg(msg: TOAST_MSGS) {
         _toastMsg.value = Event(msg)
     }
 
@@ -229,12 +220,12 @@ class GameCreateModel(application: Wordbox) : AndroidViewModel(application) {
 
     private val _letterElse: MutableLiveData<Char> = MutableLiveData('\u0020') // Z
     private val letterElse: LiveData<Char> = _letterElse
-   
+
     private val _enteredLetter0: MutableLiveData<Char> = MutableLiveData('\u0020')
     private val enteredLetter0: LiveData<Char> = _enteredLetter0
 
     private val _enteredLetter1: MutableLiveData<Char> = MutableLiveData('\u0020')
-    val enteredLetter1: LiveData<Char> = _enteredLetter1
+    private val enteredLetter1: LiveData<Char> = _enteredLetter1
 
     private val _enteredLetter2: MutableLiveData<Char> = MutableLiveData('\u0020')
     private val enteredLetter2: LiveData<Char> = _enteredLetter2
@@ -991,7 +982,7 @@ class GameCreateModel(application: Wordbox) : AndroidViewModel(application) {
 
         var j = 0
 
-        while (enteredLetterSB.length > 0) {
+        while (enteredLetterSB.isNotEmpty()) {
             val i = (Math.random() * enteredLetterSB.length).toInt()
 
             shuffledLetters[j] = enteredLetterSB[i]
@@ -1226,7 +1217,7 @@ class GameCreateModel(application: Wordbox) : AndroidViewModel(application) {
         return count
     }
 
-    private fun shuffledLlettersToTiles(count: Int): Array<Tile> {
+    private fun shuffledLettersToTiles(count: Int): Array<Tile> {
 
         val gameTiles = Array(count) { Tile(null, TileState.EMPTY, TilePos(0, 0)) }
 
@@ -1235,7 +1226,7 @@ class GameCreateModel(application: Wordbox) : AndroidViewModel(application) {
         for (i in 0..48)
             when (i) {
                 0 -> if (_letter0.value?.isLetter() == true) {
-                    gameTiles[j] = Tile(_letter0.toString(), TileState.WRONG, TilePos(0, 0))
+                    gameTiles[j] = Tile(_letter0.value.toString(), TileState.WRONG, TilePos(0, 0))
                     j++
                 }
                 1 -> if (_letter1.value?.isLetter() == true) {
@@ -1445,7 +1436,6 @@ class GameCreateModel(application: Wordbox) : AndroidViewModel(application) {
                     gameTiles[j] = Tile(_letter48.value.toString(), TileState.WRONG, TilePos(6, 6))
                     j++
                 }
-
 
             }
 
@@ -1726,14 +1716,14 @@ class GameCreateModel(application: Wordbox) : AndroidViewModel(application) {
     }
 
     fun saveGame() {
-
-        if  ((_gameDuration.value!! < 5) || (_gameDuration.value!! > 20))    {
+        if ((_gameDuration.value!! < 5) || (_gameDuration.value!! > 20)) {
             _toastMsg.value = Event(TOAST_MSGS.OUT_OF_RANGE)
             return
         }
 
-
         val count = countLetters()
+
+ //       Log.w("GameCreateModel savegame", "letters $count")
 
         if (count > 0) {
             val mills: Long = ((1000L * 60L * _gameDuration.value!!) + 1000)
@@ -1745,22 +1735,20 @@ class GameCreateModel(application: Wordbox) : AndroidViewModel(application) {
                     getApplication<Application>().resources.getString(R.string.gameCreatorDefault)
                 ) ?: getApplication<Application>().resources.getString(R.string.gameCreatorDefault)
 
-
             viewModelScope.launch {
 
                 val sortedTiles = enteredLettersToTiles(count)
-                val shuffledTiles = shuffledLlettersToTiles(count)
-
-
+                val shuffledTiles = shuffledLettersToTiles(count)
 
                 dataRepository.insert(
                     Game(
                         0,
                         count,
+                        0,
                         mills,
                         date,
                         gameCreator,
-                        dataRepository.gameTagFromTiles(sortedTiles,shuffledTiles, gameStr),
+                        dataRepository.gameTagFromTiles(sortedTiles, shuffledTiles, gameStr),
                         GAME_STATUS.C,
                         shuffledTiles
                     )
@@ -1770,15 +1758,15 @@ class GameCreateModel(application: Wordbox) : AndroidViewModel(application) {
                     Game(
                         0,
                         count,
+                        0,
                         mills,
                         date,
                         gameCreator,
                         dataRepository.gameTagFromTiles(sortedTiles, shuffledTiles, answerStr),
                         GAME_STATUS.SA,
-                        enteredLettersToTiles(count) // an answer
+                        sortedTiles // an answer
                     )
                 )
-
                 _toastMsg.value = Event(TOAST_MSGS.GAME_SAVED)
             }
         }
@@ -1788,10 +1776,10 @@ class GameCreateModel(application: Wordbox) : AndroidViewModel(application) {
 class GameCreateModelFactory(
     private val application: Wordbox
 ) : ViewModelProvider.Factory {
-  
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(GameCreateModel::class.java)) {
-
+            @Suppress("UNCHECKED_CAST")
             return GameCreateModel(application) as T
         }
         throw IllegalArgumentException("Unknown GameCreateModel class")

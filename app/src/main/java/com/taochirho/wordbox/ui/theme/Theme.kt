@@ -18,7 +18,7 @@ private val DarkColorPalette = darkColors(
     onPrimary = BlueGray50,
     onSecondary = LightGreenA200,
     onBackground = Black,
-    onSurface = LightGreenA400,
+    onSurface = LightGreenA200,
     error = Red700,
     onError = Red50,
 

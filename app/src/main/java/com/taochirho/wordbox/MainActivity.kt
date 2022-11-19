@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             handleSendJson(intent) // Handle text being sent
         }
 
-
 /*
 
         StrictMode.setThreadPolicy(
@@ -45,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                 .build()
         )
 
-
         StrictMode.setVmPolicy(
             StrictMode.VmPolicy.Builder()
                 .detectLeakedSqlLiteObjects()
@@ -55,10 +53,7 @@ class MainActivity : AppCompatActivity() {
                 .build()
         )
  */
-
         setContentView(R.layout.main_activity)
-
-
     }
 
     private fun handleSendJson(intent: Intent) {
@@ -83,6 +78,7 @@ class MainActivity : AppCompatActivity() {
             val restoredGame = Game(
                 0,
                 gameTiles.size,
+                0,
                 receivedGame.timeLeft,
                 receivedGame.dateSaved,
                 receivedGame.gameFrom,

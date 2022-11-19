@@ -18,19 +18,48 @@
         <attr name="play" format="boolean" value="false"/>
     </declare-styleable>
 
+    <declare-styleable name="GameGridView">
+         <attr name="top_border" format="dimension" />
+         <attr name="left_border" format="dimension"/>
+         <attr name="bottom_border" format="dimension" />
+         <attr name="right_border" format="dimension" />
+         <attr name="vertical_inside" format="dimension" />
+         <attr name="horizontal_inside" format="dimension" />
+         <attr name="grid_tile_border" format="dimension" />
+         <attr name="grid_tile_border_color" format="color" />
+         <attr name="grid_letter_color" format="color"/>
+         <attr name="grid_background" format="color"  />
+    </declare-styleable>
+
+    <declare-styleable name="GameTrayView">
+        <attr name="tray_tile_border" format="dimension"/>
+        <attr name="tray_tile_border_color" format="color"/>
+        <attr name="tray_letter_color" format="color"/>
+        <attr name="tray_tile_spacing" format="dimension"/>
+        <attr name="tray_background" format="color"/>
+    </declare-styleable>
+
+    <attr name="tile_right" format="color"/>
+    <attr name="tile_nearly_right" format="color"/>
+    <attr name="tile_wrong" format="color"/>
+    <attr name="tile_tray" format="color"/>
+
+    <attr name="divider_color" format="color"  />
     <attr name="swap_tile_number" format="color"/>
     <attr name="restore_tint" format="color"/>
 
     <attr name="tile_empty" format="color"/>
-    <attr name="grid_background" format="color"/>
-    <attr name="tray_background" format="color"/>
+    <attr name="tile_border" format="color"/>
+
     <attr name="tray_divider" format="color"/>
     <attr name="tray_divider_highlight" format="color"/>
     <attr name="list_background" format="color"/>
-    <attr name="list_game_background" format="color"/>
     <attr name="list_tray_background" format="color"/>
+    <attr name="list_game_background" format="color"/>
+
     <attr name="toolbar_background" format="color"/>
     <attr name="menu_background" format="color"/>
+    <attr name="menu_border_color" format="color"/>
 
     <attr name="dropDownMenu" format="color"/>
     <attr name="swaps_background" format="color"/>
@@ -39,14 +68,10 @@
 
     <attr name="timerOnBackground" format="color"/>
 
-    <attr name="tile_border" format="color"/>
-    <attr name="tile_right" format="color"/>
-    <attr name="tile_nearly_right" format="color"/>
-    <attr name="tile_wrong" format="color"/>
-    <attr name="tile_tray" format="color"/>
-
     <attr name="tile_swap_border" format="color"/>
     <attr name="tile_swap_background" format="color"/>
+
+    <attr name="button_background" format="color"/>
 
     <attr name="tile_swap_background_entered" format="color"/>
     <attr name="tile_start_border" format="color"/>
@@ -57,7 +82,6 @@
     <attr name="titleTextColor" format="color"/>
     <attr name="subtitleTextColor" format="color"/>
 
-      >
 
 
 </resources>

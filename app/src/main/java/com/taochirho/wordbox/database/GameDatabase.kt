@@ -2,11 +2,16 @@ package com.taochirho.wordbox.database
 
 
 import android.content.Context
+import android.util.Log
 import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.taochirho.wordbox.R
 import com.taochirho.wordbox.application.GAME_STATUS
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.internal.synchronized
+import kotlinx.coroutines.launch
 import java.util.*
 
 /**
@@ -20,6 +25,8 @@ fun tileFromString(string: String): Tile {
     return if (string.substring(3).toInt() == TileState.IN_TRAY.ordinal) {
         Tile(string.substring(0, 1), TileState.IN_TRAY, TilePos(9, 9))
     } else {
+      //  val s = string.substring(1, 3)
+      //  Log.w("string.substring", s)
         val hash = string.substring(1, 3).toInt() - 10  // take away the 10 added in toString
         Tile(
             string.substring(0, 1),
@@ -42,22 +49,23 @@ data class SentGame(
 internal data class CurrentGameEntity(
     @PrimaryKey val uid: Int,
     val tileCount: Int,
+    val swappedTiles: Int,
     val timeLeft: Long,
     val dateSaved: Date,
     val gameFrom: String,
     val gameTag: String,
     val status: GAME_STATUS,
     val gameTiles: Array<Tile>
-)
-{
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as GameEntity
+        other as CurrentGameEntity
 
         if (uid != other.uid) return false
         if (tileCount != other.tileCount) return false
+        if (swappedTiles != other.swappedTiles) return false
         if (timeLeft != other.timeLeft) return false
         if (dateSaved != other.dateSaved) return false
         if (gameFrom != other.gameFrom) return false
@@ -67,9 +75,11 @@ internal data class CurrentGameEntity(
 
         return true
     }
+
     override fun hashCode(): Int {
         var result = uid
         result = 31 * result + tileCount
+        result = 31 * result + swappedTiles
         result = 31 * result + timeLeft.hashCode()
         result = 31 * result + dateSaved.hashCode()
         result = 31 * result + gameFrom.hashCode()
@@ -80,11 +90,11 @@ internal data class CurrentGameEntity(
     }
 }
 
-
 @Entity(tableName = "saved_games")
 internal data class GameEntity(
     @PrimaryKey(autoGenerate = true) val uid: Int,
     val tileCount: Int,
+    val swappedTiles: Int,
     val timeLeft: Long,
     val dateSaved: Date,
     val gameFrom: String,
@@ -100,6 +110,7 @@ internal data class GameEntity(
 
         if (uid != other.uid) return false
         if (tileCount != other.tileCount) return false
+        if (swappedTiles != other.swappedTiles) return false
         if (timeLeft != other.timeLeft) return false
         if (dateSaved != other.dateSaved) return false
         if (gameFrom != other.gameFrom) return false
@@ -109,9 +120,11 @@ internal data class GameEntity(
 
         return true
     }
+
     override fun hashCode(): Int {
         var result = uid
         result = 31 * result + tileCount
+        result = 31 * result + swappedTiles
         result = 31 * result + timeLeft.hashCode()
         result = 31 * result + dateSaved.hashCode()
         result = 31 * result + gameFrom.hashCode()
@@ -122,7 +135,7 @@ internal data class GameEntity(
     }
 }
 
-data class GameStatus (
+data class GameStatus(
     val uid: Int,
     val status: GAME_STATUS
 )
@@ -156,7 +169,6 @@ class Converters {
     }
 }
 
-
 @Dao
 interface GameDao {
     @Insert(entity = GameEntity::class, onConflict = OnConflictStrategy.REPLACE)
@@ -185,14 +197,13 @@ interface GameDao {
         clear()
         resetAutoIncrement()
         insert(currentGame)
-    }*/
+    }
 
     @Query("UPDATE `sqlite_sequence` SET `seq` = 1 WHERE `name` = 'saved_games'")
     fun resetAutoIncrement()
-
+*/
     @Query("DELETE FROM saved_games")
     suspend fun clear()
-
 }
 
 @Dao
@@ -207,25 +218,22 @@ interface CurrentGameDao {
     @Update(entity = CurrentGameEntity::class)
     suspend fun updateCurrentGame(game: Game)
 
-    @Query("DELETE FROM current_game")
-    suspend fun deleteCurrent()
 }
-
 
 @Database(
     entities = [GameEntity::class, CurrentGameEntity::class],
-    version = 1,
-    exportSchema = false
+    version = 2,
+    exportSchema = true
 )
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
 
     abstract fun gameDao(): GameDao
     abstract fun currentGameDao(): CurrentGameDao
-/*
+
     private class GameDatabaseCallback(
         private val scope: CoroutineScope
-    ) : RoomDatabase.Callback() {
+    ) : Callback() {
 
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
@@ -240,17 +248,19 @@ abstract class GameDatabase : RoomDatabase() {
             // Delete all content here.
 
             Log.w("GameDatabase","populateDatabase")
-            currentGameDao.deleteCurrent()
+
             currentGameDao.insertCurrent(
                 Game(
                     0,
                     15,
+                    0,
                     900000L, // default 15 minutes (and 1 sec)
                     Date(),
                     "Word Box",
+                    "Welcome",
                     GAME_STATUS.C,
                     arrayOf(
-                        Tile("P", TileState.RIGHT, TilePos(0, 0)),
+                        Tile("W", TileState.RIGHT, TilePos(0, 0)),
                         Tile("E", TileState.RIGHT, TilePos(0, 1)),
                         Tile("L", TileState.RIGHT, TilePos(0, 2)),
                         Tile("C", TileState.RIGHT, TilePos(0, 3)),
@@ -268,9 +278,8 @@ abstract class GameDatabase : RoomDatabase() {
                     )
                 )
             )
-
         }
-    }*/
+    }
 
     companion object {
 
@@ -280,6 +289,7 @@ abstract class GameDatabase : RoomDatabase() {
         @OptIn(InternalCoroutinesApi::class)
         fun getDatabase(
             context: Context,
+            scope: CoroutineScope
         ): GameDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
@@ -290,7 +300,8 @@ abstract class GameDatabase : RoomDatabase() {
                     "stored_games",
                 )
                     .fallbackToDestructiveMigration()
-                    //                   .addCallback(GameDatabaseCallback(scope))
+   //                 .addCallback(GameDatabaseCallback(scope))
+                 .createFromAsset("wordboxinit.db")
                     .build()
                 INSTANCE = instance
                 // return instance
@@ -299,5 +310,3 @@ abstract class GameDatabase : RoomDatabase() {
         }
     }
 }
-
-

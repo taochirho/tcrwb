@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
+    <dimen name="menu_border">2dp</dimen>
     <dimen name="tile_corner_radius">4dp</dimen>
     <dimen name="tile_inner_corner_radius">4dp</dimen>
     <dimen name="timer_corner_radius">4dp</dimen>
     <dimen name="timer_stroke">2dp</dimen>
 
-
     <dimen name="tile_depth">4dp</dimen>
     <dimen name="tile_stroke">2dp</dimen>
     <dimen name="tile_list_stroke">1dp</dimen>
     <dimen name="tile_margin">1dp</dimen>
+
+    <dimen name="top_border">2dp</dimen>
+    <dimen name="left_border">2dp</dimen>
+    <dimen name="bottom_border">2dp</dimen>
+    <dimen name="right_border">2dp</dimen>
+    <dimen name="vertical_inside">2dp</dimen>
+    <dimen name="horizontal_inside">2dp</dimen>
+    <dimen name="grid_tile_border">2dp</dimen>
+
+    <dimen name="tray_tile_border">2dp</dimen>
+    <dimen name="tile_spacing">4dp</dimen>
 
     <dimen name="tile_swap_height">54dp</dimen>
     <dimen name="tile_swap_margin">8dp</dimen>
@@ -33,9 +43,6 @@
     <integer name="default_tile_count">30</integer>
     <integer name="min_tiles">27</integer>
     <integer name="max_tiles">33</integer>
-
-    <dimen name="big_padding">16dp</dimen>
-    <dimen name="min_height">48dp</dimen>
 
     <dimen name="actionBarSizePortrait">72dp</dimen>
     <dimen name="actionBarSizeLandscape">40dp</dimen>

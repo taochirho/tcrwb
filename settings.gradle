@@ -16,4 +16,4 @@ dependencyResolutionManagement {
 
 
 include ':app'
-rootProject.name = "wordbox"
+rootProject.name = "tcrwb"

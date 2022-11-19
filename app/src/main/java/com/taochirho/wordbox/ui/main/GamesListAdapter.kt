@@ -1,6 +1,7 @@
 package com.taochirho.wordbox.ui.main
 
 import android.content.res.Configuration
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.taochirho.wordbox.application.GAME_STATUS
-import com.taochirho.wordbox.database.Game
-import com.taochirho.wordbox.database.Tile
-import com.taochirho.wordbox.database.TileState
+import com.taochirho.wordbox.database.*
 import com.taochirho.wordbox.databinding.GamesListRowBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,25 +19,20 @@ class GamesListAdapter(
     private val deleteListener: GameDeleteListener,
     private val sendListener: GameSendListener,
     private val restoreListener: GameRestoreListener,
-    private val toggleListener: GameAsterixToggleListener
+    private val toggleListener: GameStarToggleListener
 ) : ListAdapter<Game, GamesListAdapter.ViewHolder>(GamesListDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item,toggleListener, deleteListener, sendListener, restoreListener)
+        holder.bind(item, toggleListener, deleteListener, sendListener, restoreListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: GamesListRowBinding) : RecyclerView.ViewHolder(binding.root){
-
-        private var gridCount = 0
-        private var trayCount = 0
-
-        private val grid = MutableList(49) { Tile("", TileState.EMPTY) }
-        private val tray = MutableList(35) { Tile("?", TileState.EMPTY) }
+    class ViewHolder private constructor(val binding: GamesListRowBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
@@ -48,73 +42,63 @@ class GamesListAdapter(
             }
         }
 
-        fun bind(item: Game,
-                 toggleListener: GameAsterixToggleListener,
-                 deleteListener: GameDeleteListener,
-                 sendListener: GameSendListener,
-                 restoreListener: GameRestoreListener) {
-            binding.game = item
+       fun bind(
+            item: Game,
+            toggleListener: GameStarToggleListener,
+            deleteListener: GameDeleteListener,
+            sendListener: GameSendListener,
+            restoreListener: GameRestoreListener
+        ) {
+
+         binding.game = item
+
+           // binding.theGrid.setGridGameArray(item)
+
 
             //binding.letterVisible = item.status != GAME_STATUS.RA
             val hideLetter = item.status == GAME_STATUS.RA
 
             binding.theGrid.visibility = View.GONE
             binding.theTray.visibility = View.GONE
-
             binding.divider1?.visibility = View.GONE
 
-            for (i in 0 until item.tileCount) {
-                countTiles(item.gameTiles[i])
-            }
+           // clearGrid()
 
-            if (gridCount > 0 && trayCount > 0 ) { // i.e tiles in both grid and tray
+            var counts = countTiles(item.gameTiles) // counts is a pair.  First is count on grid, second count on tray
+
+            if (counts.first > 0 && counts.second > 0) { // i.e tiles in both grid and tray
                 binding.theGrid.visibility = View.VISIBLE
                 binding.theTray.visibility = View.VISIBLE
                 binding.divider1?.visibility = View.VISIBLE
 
-                trayCount = 0
-                for (i in 0 until item.tileCount) {
-                    setTile(item.gameTiles[i], hideLetter)
-                }
+                Log.w("GamesListAdapter", item.toString())
+
+                binding.theGrid.setGridGameArray(item, item.status != GAME_STATUS.RA)
+                binding.theTray.setGridGameArray(item, counts.second)
+
+
             } else {
-                if (gridCount > 0) { // i.e. all tiles in tray
+                if (counts.first > 0) { // i.e. all tiles in grid
+                    binding.theGrid.setGridGameArray(item, item.status != GAME_STATUS.RA)
                     binding.theGrid.visibility = View.VISIBLE
-                    for (i in 0 until item.tileCount) {
-                        addToGrid(item.gameTiles[i], hideLetter)
-                        binding.divider1?.visibility = View.VISIBLE
-                    }
-                } else {
+
+                } else {  // i.e. all tiles in tray
+                    binding.theTray.setGridGameArray(item, counts.second)
                     binding.theTray.visibility = View.VISIBLE
 
-                    trayCount = 0
-                    for (i in 0 until item.tileCount) {
-                        addToTray(item.gameTiles[i])
-                    }
                 }
             }
 
-            binding.theTray.visibility = View.VISIBLE
-
-            trayCount = 0
-//            for (i in 0 until item.tileCount) {
-//                addToTray(Tile("A", TileState.EMPTY))
-//            }
-
- /*           binding.textSize = 2f *
-                if (itemView.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    itemView.resources.configuration.screenWidthDp / 7
-                } else {
-                    itemView.resources.configuration.screenWidthDp / 48
-                }
-*/
+/*
 
             if (itemView.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                 binding.textSize = itemView.resources.displayMetrics.widthPixels / 12.0f
             } else {
                 binding.textSize = itemView.resources.displayMetrics.heightPixels / 28.0f
             }
+*/
 
-             val w : Double
+            val w: Double
 
             if (itemView.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 w = itemView.resources.configuration.screenWidthDp / 1.8
@@ -125,28 +109,14 @@ class GamesListAdapter(
             } else {
                 itemView.resources.displayMetrics.widthPixels
                 w = itemView.resources.displayMetrics.widthPixels.toDouble()
-                val pattern = "EEEE dd MMMM yyyy 'at' HH:mm" // EEEE has to be exactly 4 characters to be e.g. Saturday
+                val pattern =
+                    "EEEE dd MMMM yyyy 'at' HH:mm" // EEEE has to be exactly 4 characters to be e.g. Saturday
                 val simpleDateFormat = SimpleDateFormat(pattern, Locale.UK)
                 binding.formattedSavedDate = simpleDateFormat.format(item.dateSaved)
 
             }
 
-            val wDiv = (w / 8).toInt()
-            val wMod = ((w - (8 * wDiv)) / 2).toInt() //((w % 7) / 2).toInt()
-
-            binding.G0.setGuidelineBegin(wMod)
-            binding.G1.setGuidelineBegin(wMod + wDiv)
-            binding.G2.setGuidelineBegin(wMod + (2 * wDiv))
-            binding.G3.setGuidelineBegin(wMod + (3 * wDiv))
-            binding.G4.setGuidelineBegin(wMod + (4 * wDiv))
-            binding.G5.setGuidelineBegin(wMod + (5 * wDiv))
-            binding.G6.setGuidelineBegin(wMod + (6 * wDiv))
-            binding.G7.setGuidelineBegin(wMod + (7 * wDiv))
-
-            binding.grid = grid
-            binding.tray = tray
-
-            binding.toggleLetterAsterixClickListener = toggleListener
+            binding.toggleLetterStarClickListener = toggleListener
             binding.deleteClickListener = deleteListener
             binding.sendClickListener = sendListener
             binding.restoreClickListener = restoreListener
@@ -154,34 +124,54 @@ class GamesListAdapter(
         }
 
 
-        private fun countTiles(tile: Tile) {
-            if (tile.state == TileState.IN_TRAY) {
-                trayCount += 1
-            } else {
-                gridCount += 1
+        private fun countTiles(tiles: Array<Tile>) : Pair<Int, Int> {
+            var gridCount = 0
+            var trayCount = 0
+
+            for (tile in tiles) {
+                if (tile.state == TileState.IN_TRAY) {
+                    trayCount += 1
+                } else {
+                    gridCount += 1
+                }
             }
+            return Pair(gridCount, trayCount)
+
         }
 
-        private fun setTile(tile: Tile, hideLetter: Boolean) {
+     /*   private fun clearGrid() {
+            var i = 0
+            var j = 0
+
+            for (i in 0..6) {
+                for (j in 0..6) {
+                    grid[(i * 7) + j] = Tile("", TileState.EMPTY, TilePos(i, j, -1))
+                }
+            }
+        }*/
+
+      /*  private fun setTile(tile: Tile, hideLetter: Boolean) {
             if (tile.state == TileState.IN_TRAY) {
                 addToTray(tile)
             } else {
-                addToGrid(tile, hideLetter)
+                //addToGrid(tile, hideLetter)
             }
-        }
+        }*/
 
-        private fun addToGrid(tile: Tile, hideLetter: Boolean) {
-            if (hideLetter){
-                grid[(tile.tilePos.row * 7) + tile.tilePos.col] = Tile("*", TileState.RIGHT, tile.tilePos)
+       /* private fun addToGrid(tile: Tile, hideLetter: Boolean) {
+
+            if (hideLetter) {
+                grid[(tile.tilePos.row * 7) + tile.tilePos.col] =
+                    Tile("*", TileState.RIGHT, tile.tilePos)
             } else {
                 grid[(tile.tilePos.row * 7) + tile.tilePos.col] = tile
             }
-        }
+        }*/
 
-        private fun addToTray(tile: Tile) {
-            tray[trayCount]  = tile
+      /*  private fun addToTray(tile: Tile) {
+           // tray[trayCount] = tile
             trayCount += 1
-        }
+        }*/
     }
 
 
@@ -196,16 +186,16 @@ class GamesListAdapter(
         }
     }
 
-    class GameAsterixToggleListener(val clickListener: (game: Game) -> Unit) {
-        fun onClick(game: Game) = clickListener (game)
+    class GameStarToggleListener(val clickListener: (game: Game) -> Unit) {
+        fun onClick(game: Game) = clickListener(game)
     }
 
     class GameRestoreListener(val clickListener: (uid: Int) -> Unit) {
-        fun onClick(uid: Int) = clickListener (uid)
+        fun onClick(uid: Int) = clickListener(uid)
     }
 
     class GameSendListener(val clickListener: (uid: Int) -> Unit) {
-        fun onClick(uid: Int) = clickListener (uid)
+        fun onClick(uid: Int) = clickListener(uid)
     }
 
     class GameDeleteListener(val clickListener: (game: Game) -> Unit) {

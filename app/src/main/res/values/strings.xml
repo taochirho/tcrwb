@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Gord Box Solitaire</string>
-    <string name="app_subtitle">Game: %s</string>
+    <string name="app_name">Word Box Solitaire</string>
     <string name="app_subtitle_list"> - saved games</string>
     <string name="app_subtitle_create"> - create game</string>
     <string name="games_list">Stored games</string>
     <string name="start">New Game</string>
-    <string name="start_grid"> - grid</string>
-    <string name="start_tray"> -  tray</string>
+    <string name="start_grid"> random letters - grid</string>
+    <string name="start_tray"> random letters - tray</string>
+    <string name="create_new"> create game</string>
     <string name="shuffle_grid">Shuffle on grid</string>
     <string name="shuffle_tray">Shuffle on tray</string>
     <string name="shuffle">Shuffle</string>
@@ -14,23 +14,22 @@
     <string name="clear">Clear</string>
 
     <string name="save_game">Save</string>
-    <string name="store_share_create">Games(create &amp; share)</string>
-    <string name="create_new">Create game</string>
+    <string name="save_game_c">Save - challenge</string>
+    <string name="save_game_s">Save - a solution</string>
+
 
     <string name="game">game</string>
     <string name="answer">answer?</string>
-    <string name="saved">saved game</string>
+    <string name="saved">game</string>
+    <string name="saved_with_swaps">game (swaps: %1$d)</string>
 
     <string name="target_time">Target time in minutes (5–20)</string>
-    <string name="share_puzzle">Share game</string>
     <string name="stored_games">Saved games</string>
 
     <string name="restore">Restore</string>
-    <string name="send">Send</string>
     <string name="delete">Delete</string>
 
     <string name="clear_games">Clear stored games</string>
-    <string name="return_to_game">Return to game</string>
 
     <string name="current">This Game</string>
     <string name="restart_timer">Restart timer</string>
@@ -45,10 +44,7 @@
 
     <string name="keyGameCreator">kgc</string>
     <string name="gameCreator">Game creator</string>
-    <string name="from">%s from: %s</string>
-    <string name="gameCreatorDefault">Set in Preferences</string>
-
-    <string name="hint_word">Take a Hint</string>
+    <string name="gameCreatorDefault">Set creator in Preferences</string>
 
     <!--  Toast messages-->
 

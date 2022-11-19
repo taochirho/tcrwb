@@ -17,19 +17,21 @@ android {
         applicationId "com.taochirho.wordbox"
 
         minSdkVersion 26
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
-        /*javaCompileOptions {
+        javaCompileOptions {
             annotationProcessorOptions {
                 arguments += [
-                        "room.schemaLocation":"$projectDir/schemas".toString(),
-                        "room.incremental":"true",
-                        "room.expandProjection":"true"]
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
             }
-        }*/
-
+        }
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas".toString())
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -87,13 +89,9 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
 
-
-
     implementation "androidx.fragment:fragment-ktx:$rootProject.fragmentVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerVersion"
     implementation "androidx.preference:preference-ktx:$rootProject.preferenceVersion"
-
-
 
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "androidx.activity:activity-ktx:$rootProject.activityVersion"
@@ -101,7 +99,6 @@ dependencies {
     implementation("androidx.room:room-runtime:$rootProject.roomVersion")
     annotationProcessor("androidx.room:room-compiler:$rootProject.roomVersion")
     implementation("androidx.room:room-ktx:$rootProject.roomVersion")
-
 
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
@@ -115,7 +112,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleExtensionVersion"
 
     // Kotlin components
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
+   // implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
 

@@ -38,12 +38,9 @@ class TCRTile : androidx.appcompat.widget.AppCompatTextView  {
         this.viewModel = viewModel
         this.tilePos = tilePos
 
-//        Log.w("connectViewModel", "$tilePos $text $tileState")
-
         mGestureDetector = GestureDetectorCompat(context, TCRTileGestureListener(viewModel, tilePos, tileState ))
         mGestureDetector.setIsLongpressEnabled(false)
         }
-
 
     override fun onCreateDrawableState(extraSpace: Int): IntArray? {
         if (tileState == null) {  //ignore warning that this is always false.  App crashes if this test is removed

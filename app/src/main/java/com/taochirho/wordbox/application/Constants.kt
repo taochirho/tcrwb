@@ -1,3 +1,5 @@
+@file:Suppress("ClassName")
+
 package com.taochirho.wordbox.application
 
 

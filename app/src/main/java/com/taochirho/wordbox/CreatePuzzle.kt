@@ -394,7 +394,7 @@ class CreatePuzzle : ComponentActivity() {
                         verticalArrangement = Arrangement.SpaceAround) {
                         Row(Modifier.fillMaxWidth(0.5f), Arrangement.Start) {
                             val gameDuration: Int by vm.gameDuration.observeAsState(0)
-                            gameTimeEntry(gameDuration = gameDuration, onDurationChange = {input: String -> vm.onDurationChange(input) } )
+                            GameTimeEntry(gameDuration = gameDuration, onDurationChange = {input: String -> vm.onDurationChange(input) } )
 
                         }
 
@@ -522,7 +522,7 @@ class CreatePuzzle : ComponentActivity() {
                         Arrangement.SpaceAround
                     )  {
                         val gameDuration: Int by vm.gameDuration.observeAsState(0)
-                        gameTimeEntry(gameDuration = gameDuration, onDurationChange = {input: String -> vm.onDurationChange(input) } )
+                        GameTimeEntry(gameDuration = gameDuration, onDurationChange = {input: String -> vm.onDurationChange(input) } )
                     }
 
 
@@ -549,7 +549,7 @@ class CreatePuzzle : ComponentActivity() {
     }
 
     @Composable
-    fun gameTimeEntry(gameDuration:Int, onDurationChange: (String) -> Unit ) {
+    fun GameTimeEntry(gameDuration:Int, onDurationChange: (String) -> Unit ) {
 
         val numberTextStyle = MaterialTheme.typography.body1.copy(
             color = MaterialTheme.colors.onSurface,

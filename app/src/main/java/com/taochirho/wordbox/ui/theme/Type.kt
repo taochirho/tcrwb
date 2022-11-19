@@ -25,7 +25,7 @@ val Typography = Typography(
         fontFamily = brygada1918,
         fontWeight = FontWeight.SemiBold,
         fontSize = 96.sp,
-        letterSpacing = -1.5.sp,
+        letterSpacing = (-1.5).sp,
         color = Color.Blue
     ),
 
@@ -33,7 +33,7 @@ val Typography = Typography(
         fontFamily = splineSans,
         fontWeight = FontWeight.Bold,
         fontSize = 60.sp,
-        letterSpacing = -0.5.sp
+        letterSpacing = (-0.5).sp
     ),
 
     h3 = TextStyle(

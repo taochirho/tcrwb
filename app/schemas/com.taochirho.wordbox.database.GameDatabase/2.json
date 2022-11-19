@@ -1,0 +1,150 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "5bacaaa412a731ba400a4abee90e1481",
+    "entities": [
+      {
+        "tableName": "saved_games",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tileCount` INTEGER NOT NULL, `swappedTiles` INTEGER NOT NULL, `timeLeft` INTEGER NOT NULL, `dateSaved` INTEGER NOT NULL, `gameFrom` TEXT NOT NULL, `gameTag` TEXT NOT NULL, `status` TEXT NOT NULL, `gameTiles` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tileCount",
+            "columnName": "tileCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "swappedTiles",
+            "columnName": "swappedTiles",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeLeft",
+            "columnName": "timeLeft",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateSaved",
+            "columnName": "dateSaved",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameFrom",
+            "columnName": "gameFrom",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameTag",
+            "columnName": "gameTag",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameTiles",
+            "columnName": "gameTiles",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "current_game",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER NOT NULL, `tileCount` INTEGER NOT NULL, `swappedTiles` INTEGER NOT NULL, `timeLeft` INTEGER NOT NULL, `dateSaved` INTEGER NOT NULL, `gameFrom` TEXT NOT NULL, `gameTag` TEXT NOT NULL, `status` TEXT NOT NULL, `gameTiles` TEXT NOT NULL, PRIMARY KEY(`uid`))",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tileCount",
+            "columnName": "tileCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "swappedTiles",
+            "columnName": "swappedTiles",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeLeft",
+            "columnName": "timeLeft",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateSaved",
+            "columnName": "dateSaved",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameFrom",
+            "columnName": "gameFrom",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameTag",
+            "columnName": "gameTag",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameTiles",
+            "columnName": "gameTiles",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5bacaaa412a731ba400a4abee90e1481')"
+    ]
+  }
+}

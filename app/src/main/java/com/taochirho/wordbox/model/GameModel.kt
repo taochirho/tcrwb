@@ -23,8 +23,7 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
     SpellCheckerSession.SpellCheckerSessionListener,
     SharedPreferences.OnSharedPreferenceChangeListener {
 
-
-    private val TAG = "GameModel"
+    private val tag = "GameModel"
 
     val trayTileID = 427  // if tile index 0 the swap tile does not appear
 
@@ -558,19 +557,6 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
         }
     }
 
-    /*@Parcelize
-    data class TilePos(var row: Int, var col: Int, var trayIndex: Int = -1) :Parcelable
-
-    internal class Line(val word: String, val tiles: Set<Tile>) {
-
-        override fun toString(): String {
-            return "Line{" +
-                    word + '\'' +
-                    ", from " + tiles.toString() +
-                    '}'
-        }
-    }
-*/
     private var grid: Grid
     private var tray: Tray
     private var prefDuration =
@@ -598,7 +584,7 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
     private val _gameTag: MutableLiveData<String> = MutableLiveData("Default")
     var gameTag: LiveData<String> = _gameTag
 
-    private val _gameCreator: MutableLiveData<String> = MutableLiveData("Piltdown Man")
+    private val _gameCreator: MutableLiveData<String> = MutableLiveData("")
     var gameCreator: LiveData<String> = _gameCreator
 
     private val _theGrid: MutableLiveData<Grid> by lazy {
@@ -642,7 +628,7 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
                 true
             )!!
         } catch (e: Exception) {
-            Log.w(TAG, "Spell check error $e")
+            Log.w(tag, "Spell check error $e")
         }
 
         cdt = object : CountDownTimer(_millisecondsLeft.value!!, 1000) {
@@ -895,8 +881,6 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
             If subsequent sets intersect with the working set they are combined with it and then removed.  When no more sets can be combined with the working set it is added to finalSets.
              */
 
-        //    Log.w("onGetSentenceSuggestions", twoAndThree.toString())
-
             allLines.addAll(twoAndThree)
 
             val finalSets = HashSet<Set<Tile>>(allLines.size)
@@ -1133,7 +1117,7 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
     }
 
     fun pauseTimer() {
-//        Log.w(TAG, "pauseTimer()")
+//        Log.w(tag, "pauseTimer()")
         _timerRunning.value = false
         cdt.cancel()
     }
@@ -1187,7 +1171,7 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
           }
       }
   */
-    fun saveGame() {
+    fun saveGame(status: GAME_STATUS) {
 
         val count = _tileCount.value ?: return
         viewModelScope.launch {
@@ -1211,10 +1195,24 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
                 }
             }
 
+            var desc: String
+
+            if (status == GAME_STATUS.RA ) {
+                desc = getApplication<Application>().resources.getString(R.string.answer)
+                _tilesSwapped.value = 0
+            } else {
+                desc = if (_tilesSwapped.value == 0) {
+                    getApplication<Application>().resources.getString(R.string.saved)
+                } else {
+                    getApplication<Application>().resources.getString(R.string.saved_with_swaps, _tilesSwapped.value )
+                }
+            }
+
             dataRepository.insert(
                 Game(
                     0,
                     _tileCount.value!!,
+                    _tilesSwapped.value!!,
                     _millisecondsLeft.value!!,
                     Date(),
                     PreferenceManager.getDefaultSharedPreferences(getApplication()).getString(
@@ -1222,8 +1220,8 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
                         getApplication<Application>().resources.getString(R.string.gameCreatorDefault)
                     )
                         ?: getApplication<Application>().resources.getString(R.string.gameCreatorDefault),
-                    dataRepository.gameTagFromTiles(gameTiles, gameTiles, getApplication<Application>().resources.getString(R.string.saved)),
-                    GAME_STATUS.C,
+                    dataRepository.gameTagFromTiles(gameTiles, gameTiles, desc),
+                    status,
                     gameTiles
                 )
             )
@@ -1259,6 +1257,7 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
                 Game(
                     0,
                     _tileCount.value!!,
+                    _tilesSwapped.value!!,
                     _millisecondsLeft.value!!,
                     Date(),
                     PreferenceManager.getDefaultSharedPreferences(getApplication()).getString(
@@ -1275,7 +1274,7 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
     }
 
     override fun onCleared() {
-        saveGame()
+        saveGame(GAME_STATUS.C)
         super.onCleared()
     }
 
@@ -1286,7 +1285,6 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
     }
 
     fun retrieveGame(uid: Int) {
-        Log.w("GameModel retrieveGame", "uid $uid")
         viewModelScope.launch {
             loadGame(dataRepository.getGameWithUid(uid))
         }
@@ -1304,35 +1302,64 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
         }
     }
 
-    private fun loadGame(rg: Game) {
+    private fun loadGame(game: Game) {
 
-        _gameTag.value = rg.gameTag
-        _gameCreator.value = rg.gameFrom
-        _tileCount.value = rg.tileCount
+     /*   var g = Game(
+            0,
+            15,
+            0,
+            900000L, // default 15 minutes (and 1 sec)
+            Date(),
+            "Word Box",
+            "Welcome",
+            GAME_STATUS.C,
+            arrayOf(
+                Tile("W", TileState.RIGHT, TilePos(0, 0)),
+                Tile("E", TileState.RIGHT, TilePos(0, 1)),
+                Tile("L", TileState.RIGHT, TilePos(0, 2)),
+                Tile("C", TileState.RIGHT, TilePos(0, 3)),
+                Tile("O", TileState.RIGHT, TilePos(0, 4)),
+                Tile("M", TileState.RIGHT, TilePos(0, 5)),
+                Tile("E", TileState.RIGHT, TilePos(0, 6)),
+                Tile("T", TileState.NEARLY_RIGHT, TilePos(2, 1)),
+                Tile("W", TileState.WRONG, TilePos(3, 0)),
+                Tile("O", TileState.WRONG, TilePos(3, 1)),
+                Tile("R", TileState.WRONG, TilePos(3, 2)),
+                Tile("D", TileState.WRONG, TilePos(3, 3)),
+                Tile("B", TileState.WRONG, TilePos(3, 4)),
+                Tile("O", TileState.WRONG, TilePos(4, 5)),
+                Tile("Y", TileState.WRONG, TilePos(5, 6)),
+            )
+        )*/
 
-        _score.value = 0
-        _millisecondsLeft.value = rg.timeLeft
+            _gameTag  .value = game.gameTag
+            _gameCreator.value = game.gameFrom
+            _tileCount.value = game.tileCount
+            _tilesSwapped.value = game.swappedTiles
+            _score.value = 0
+            _millisecondsLeft.value = game.timeLeft
 
-        // clear Grid
-        for (row in 0..6) {
-            for (col in 0..6) {
-                grid[TilePos(row, col)] = Tile(null, TileState.EMPTY, TilePos(row, col))
+
+            // clear Grid
+            for (row in 0..6) {
+                for (col in 0..6) {
+                    grid[TilePos(row, col)] = Tile(null, TileState.EMPTY, TilePos(row, col))
+                }
             }
-        }
 
-        // clear Tray
+            // clear Tray
 
-        for (i in tray.tray.indices) {
-            tray[i] = Tile(null, TileState.IN_TRAY, TilePos(-1, -1))
-        }
-        tray.positionsSet = false
+            for (i in tray.tray.indices) {
+                tray[i] = Tile(null, TileState.IN_TRAY, TilePos(-1, -1))
+            }
+            tray.positionsSet = false
 
-        var trayIndex = 0
+            var trayIndex = 0
 
-        letterSet.clear()
+            letterSet.clear()
 
-        for (i in 0 until rg.tileCount) {
-            val tile = rg.gameTiles[i]
+            for (i in 0 until game.tileCount) {
+            val tile = game.gameTiles[i]
 
             letterSet.append(tile.letter)
 
@@ -1345,11 +1372,10 @@ class GameModel(application: Wordbox) : AndroidViewModel(application),
             }
         }
 
-        scoreGrid()
+            scoreGrid()
 
-        _theGrid.value = grid
-        _theTray.value = tray
-
+            _theGrid.value = grid
+            _theTray.value = tray
 
     }
 
@@ -1379,10 +1405,9 @@ class GameModelFactory(
     private val application: Wordbox
 ) : ViewModelProvider.Factory {
 
-
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(GameModel::class.java)) {
-//             Log.w("in GameModelFactory", "no args")
+            @Suppress("UNCHECKED_CAST")
             return GameModel(application) as T
         }
         throw IllegalArgumentException("Unknown GameViewModel class")

@@ -3,15 +3,12 @@ package com.taochirho.wordbox.ui.main
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.view.MotionEvent
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.taochirho.wordbox.R
 import com.taochirho.wordbox.model.GameModel
-
 
 class TCRStartTile : androidx.appcompat.widget.AppCompatTextView  {
     constructor(context: Context?) : this(context, null)
@@ -35,8 +32,6 @@ class TCRStartTile : androidx.appcompat.widget.AppCompatTextView  {
         viewModel.timerRunning.observe(myParent.viewLifecycleOwner, timerStateObserver)
         }
 
-
-    @RequiresApi(Build.VERSION_CODES.N)
     val timerStateObserver = Observer<Boolean> {
 
         tileStartState = if (it) { //  it = timerRunning

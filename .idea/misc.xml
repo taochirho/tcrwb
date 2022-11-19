@@ -41,7 +41,19 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="com.taochirho.wordbox.database.GameDatabaseKt com.taochirho.wordbox.database.Tile tileFromString(java.lang.String string)" />
+      <entry_point TYPE="field" FQNAME="com.taochirho.wordbox.ui.main.GameFragment args$delegate" />
+      <entry_point TYPE="field" FQNAME="com.taochirho.wordbox.ui.main.GameFragment gameCreatorObserver" />
+      <entry_point TYPE="field" FQNAME="com.taochirho.wordbox.ui.main.GameFragment gameTagObserver" />
+      <entry_point TYPE="field" FQNAME="com.taochirho.wordbox.ui.main.GameFragment scoreObserver" />
+      <entry_point TYPE="field" FQNAME="com.taochirho.wordbox.ui.main.GameFragment timeLeftObserver" />
+      <entry_point TYPE="field" FQNAME="com.taochirho.wordbox.model.GameCreateModel answerStr" />
+    </entry_points>
+    <pattern value="com.taochirho.wordbox.ui.main.TCRStartTile" method="setTileStartState" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

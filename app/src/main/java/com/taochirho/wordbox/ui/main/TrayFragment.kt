@@ -2,10 +2,8 @@ package com.taochirho.wordbox.ui.main
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.view.*
-import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil

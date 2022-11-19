@@ -2,42 +2,56 @@
     <!-- Base application theme. -->
     <style name="Theme.TCRWordbox" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <item name="grid_background">@color/grid_background_night</item>
-        <item name="tray_background">@color/tray_background_night</item>
-        <item name="tray_divider">@color/tray_divider_night</item>
-        <item name="tray_divider_highlight">@color/tray_divider_highlight_night</item>
-        <item name="list_background">@color/list_background_night</item>
-        <item name="list_game_background">@color/list_game_background_night</item>
-        <item name="list_tray_background">@color/list_tray_background_night</item>
-        <item name="toolbar_background">@color/toolbar_background_night</item>
+<!--        <item name="grid_background">@color/BlueGray700</item>-->
+<!--        <item name="tray_background">@color/BlueGray600</item>-->
+        <item name="tray_divider">@color/BlueGray400</item>
+        <item name="tray_divider_highlight">@color/BlueGray300</item>
+        <item name="list_background">@color/BlueGray700</item>
+        <item name="list_game_background">@color/BlueGray700</item>
+        <item name="list_tray_background">@color/BlueGray700</item>
+        <item name="toolbar_background">@color/BlueGray900</item>
 
-        <item name="restore_tint">@color/restore_tint_night</item>
-        <item name="android:textColor"> @color/textColor_night</item>
-        <item name="android:textColorPrimary"> @color/textColorPrimary_night </item>
-        <item name="android:textColorSecondary"> @color/textColorSecondary_night </item>
+        <item name="divider">@color/Amber300</item>
 
-        <item name="titleTextColor"> @color/textColorPrimary_night </item>
-        <item name="subtitleTextColor"> @color/textColorSecondary_night </item>
+        <item name="restore_tint">@color/LightGreenA400</item>
+        <item name="android:textColor"> @color/BlueGray50 </item>
+        <item name="android:textColorPrimary"> @color/BlueGray100</item>
+        <item name="android:textColorSecondary"> @color/BlueGray200</item>
 
-        <item name="tile_empty">@color/tile_empty</item>
-        <item name="tile_entered">@color/tile_entered_night</item>
+        <item name="titleTextColor"> @color/BlueGray50 </item>
+        <item name="subtitleTextColor"> @color/BlueGray200 </item>
 
-        <item name="tile_swap_border">@color/tile_swap_border_night</item>
-        <item name="tile_swap_background">@color/tile_swap_background_night</item>
+        <item name="tile_empty">@color/BlueGray200</item>
+        <item name="tile_entered">@color/BlueGray400</item>
 
-        <item name="tile_swap_background_entered">@color/tile_swap_background_entered_night</item>
+        <item name="tile_swap_border">@color/DeepPurple600</item>
+        <item name="tile_swap_background">@color/DeepPurple300</item>
 
-        <item name="tile_start_border">@color/tile_start_border_night</item>
-        <item name="tile_start_background">@color/tile_start_background_night</item>
+        <item name="tile_swap_background_entered">@color/BlueGray100</item>
 
-        <item name="tile_border">@color/tile_border_night</item>
-        <item name="tile_right">@color/tile_right_night</item>
-        <item name="tile_nearly_right">@color/tile_nearly_right_night</item>
-        <item name="tile_wrong">@color/tile_wrong_night</item>
-        <item name="tile_tray">@color/tile_tray_night</item>
+        <item name="tile_start_border">@color/LightGreen300</item>
+        <item name="tile_start_background">@color/LightGreen400</item>
 
 
-        <item name="menu_background">@color/menu_background_night</item>
+        <item name="tile_right">@color/LightGreen600</item>
+        <item name="tile_nearly_right">@color/Amber600</item>
+        <item name="tile_wrong">@color/Red600</item>
+        <item name="tile_tray">@color/BlueGray600</item>
+
+
+<!--        <item name="grid_tile_border_color">@color/BlueGray800</item>-->
+<!--        <item name="tray_tile_border_color">@color/BlueGray800</item>-->
+
+
+<!--        <item name="grid_letter_color">@color/LightGreenA200</item>-->
+<!--        <item name="tray_letter_color">@color/LightGreenA200</item>-->
+
+        <item name="tile_border">@color/BlueGray800</item>
+        <item name="button_background">@color/BlueGray600</item>
+
+        <item name="menu_background">@color/BlueGray400</item>
+        <item name="menu_border_color">@color/Red300</item>
+
     </style>
 
     <style name="TCRToolBarTheme">

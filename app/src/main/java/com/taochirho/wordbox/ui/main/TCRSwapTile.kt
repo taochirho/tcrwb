@@ -16,16 +16,15 @@ class TCRSwapTile : androidx.appcompat.widget.AppCompatTextView  {
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context!!, attrs, defStyleAttr)
 
 
-    private var viewModel : GameModel? = null
-    private lateinit var myParent : Fragment
+  //  private var viewModel : GameModel? = null
+  //  private lateinit var myParent : Fragment
 
     fun connectViewModel(viewModel: GameModel, parent: Fragment) {
-        this.viewModel = viewModel
-        myParent = parent
-        viewModel.tilesSwapped.observe(myParent.viewLifecycleOwner, tilesSwappedObserver)
+   //     this.viewModel = viewModel
+   //     myParent = parent
+        viewModel.tilesSwapped.observe(parent.viewLifecycleOwner, tilesSwappedObserver)
         }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     val tilesSwappedObserver = Observer<Int> {
 //        Log.w("tilesSwappedObserver", "$it")
         text = it.toString()
