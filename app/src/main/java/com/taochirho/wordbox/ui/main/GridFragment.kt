@@ -11,15 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.taochirho.wordbox.R
-import com.taochirho.wordbox.application.Wordbox
 import com.taochirho.wordbox.database.TilePos
 import com.taochirho.wordbox.database.TileState
 import com.taochirho.wordbox.databinding.GridFragmentBinding
-import com.taochirho.wordbox.model.GameModel
-import com.taochirho.wordbox.model.GameModelFactory
+
+import com.taochirho.wordbox.model.WordBoxViewModel
 
 @SuppressLint("ClickableViewAccessibility")
 class GridFragment : Fragment() {
@@ -30,7 +29,7 @@ class GridFragment : Fragment() {
 
 //  private val TAG = "GridFragment"
 
-    private lateinit var viewModel: GameModel
+    private val wordboxVM: WordBoxViewModel by activityViewModels()
 
 
     private lateinit var gridArray: Array<Array<TCRTile>>
@@ -53,8 +52,6 @@ class GridFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        val application = requireNotNull(this.activity).application as Wordbox
-        viewModel = activity?.let { ViewModelProvider(it.viewModelStore, GameModelFactory(application))[GameModel::class.java] }!!
 
         binding = DataBindingUtil.inflate(inflater, R.layout.grid_fragment, container, false)
         gridArray = arrayOf(
@@ -129,14 +126,14 @@ class GridFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val theGridObserver = Observer<GameModel.Grid> {
+        val theGridObserver = Observer<WordBoxViewModel.Grid> {
 
             for (row in 0..6) {
                 for (col in 0..6) {
                     gridArray[row][col].text = it[TilePos(row, col)].letter
                     gridArray[row][col].includeFontPadding = false
                     gridArray[row][col].tileState = it[TilePos(row, col)].state
-                }
+                    }
             }
         }
 
@@ -146,7 +143,7 @@ class GridFragment : Fragment() {
             binding.textSize = resources.displayMetrics.heightPixels / 12.0f
         }
 
-        viewModel.theGrid.observe(viewLifecycleOwner, theGridObserver)
+        wordboxVM.theGrid.observe(viewLifecycleOwner, theGridObserver)
         setListeners()
     }
     private fun doDragGridMove(tile: TCRTile, dragEvent: DragEvent): Boolean {
@@ -158,12 +155,12 @@ class GridFragment : Fragment() {
                 true
             }
 
-            DragEvent.ACTION_DRAG_ENTERED -> if (tile.tag != viewModel.startDragPos) {
+            DragEvent.ACTION_DRAG_ENTERED -> if (tile.tag != wordboxVM.startDragPos) {
                 mTileState = tile.tileState
                 tile.tileState = TileState.ENTERED
             }
 
-            DragEvent.ACTION_DRAG_EXITED -> if (tile.tag != viewModel.startDragPos) {
+            DragEvent.ACTION_DRAG_EXITED -> if (tile.tag != wordboxVM.startDragPos) {
                 tile.tileState = mTileState
             }
 
@@ -171,12 +168,12 @@ class GridFragment : Fragment() {
                 if (dragEvent.localState != null) {
 
                     if ((dragEvent.localState as TileState) == TileState.IN_TRAY) {
-                        viewModel.removeTileFromTray(viewModel.tileInfoFromClipData(dragEvent.clipData).trayIndex)
+                        wordboxVM.removeTileFromTray(wordboxVM.tileInfoFromClipData(dragEvent.clipData).trayIndex)
                     } else {
-                        viewModel.updateTile(viewModel.getLetterFromGrid(tile.tag as TilePos),  viewModel.startDragPos)
+                        wordboxVM.updateTile(wordboxVM.getLetterFromGrid(tile.tag as TilePos),  wordboxVM.startDragPos)
                     }
                 }
-                viewModel.addTileToGrid(viewModel.tileInfoFromClipData(dragEvent.clipData).letter, (tile.tag as TilePos))
+                wordboxVM.addTileToGrid(wordboxVM.tileInfoFromClipData(dragEvent.clipData).letter, (tile.tag as TilePos))
 
 
             }
@@ -189,7 +186,7 @@ class GridFragment : Fragment() {
 
         for (row in 0..6) {
             for (col in 0..6) {
-                gridArray[row][col].connectViewModel(viewModel, TilePos(row, col))
+                gridArray[row][col].connectViewModel(wordboxVM, TilePos(row, col))
                 gridArray[row][col].setOnDragListener(mOnDragGridListener)
                 gridArray[row][col].tag = TilePos(row, col)
             }

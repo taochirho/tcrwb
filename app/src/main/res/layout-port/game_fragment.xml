@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/list_tray_background"
+        android:background="?attr/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/actionBarSizePortrait"
             android:minHeight="@dimen/actionBarSizePortrait"
-            android:background="?attr/toolbar_background"
+            android:background="?attr/colorPrimary"
             android:elevation="4dp"
             android:theme="@style/Theme.TCRWordbox"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,39 +28,21 @@
                 android:id="@+id/tb"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/toolbar_background"
+                android:background="?attr/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" >
 
-                <TextView
-                    android:id="@+id/wb_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/titleTextColor"
-
-                    android:gravity="center"
-                    android:inputType="none"
-
-                    android:layout_marginTop="4dp"
-
-                    android:text="@string/app_name"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toTopOf="@id/wb_subtitle"
-
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
                     android:id="@+id/wb_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/subtitleTextColor"
+                    android:textColor="?attr/colorOnSecondary"
                     android:gravity="center"
                     android:inputType="none"
 
-                    android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/wb_title"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/wb_gameCreator"
                     app:layout_constraintStart_toStartOf="parent"
                      />
@@ -72,12 +54,12 @@
                     android:layout_marginStart="0dp"
                     android:layout_marginBottom="2dp"
                     android:text="@string/gameCreatorDefault"
-                    android:textColor="?attr/subtitleTextColor"
+                    android:textColor="?attr/colorOnSecondary"
 
                     android:gravity="center"
                     android:inputType="none"
 
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     app:layout_constraintTop_toBottomOf="@id/wb_subtitle"
                     app:layout_constraintBottom_toBottomOf="parent"
 
@@ -116,19 +98,40 @@
                     android:background="@drawable/timer_background"
                     android:gravity="center"
                     android:inputType="none"
-                    android:minWidth="48dp"
+                    android:minWidth="40dp"
 
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
                     android:paddingBottom="8dp"
 
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/starter"
                     app:layout_constraintStart_toEndOf="@id/timer"
                     app:layout_constraintTop_toTopOf="parent"
 
                     />
+
+                <ImageButton
+                    android:id="@+id/starter"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/starter_background"
+                    android:src="@drawable/ic_baseline_play_circle_24"
+
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                    app:layout_constraintStart_toEndOf="@id/score"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:contentDescription="@string/game_start"/>
+
+
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.appcompat.widget.Toolbar>
@@ -145,8 +148,8 @@
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="?attr/tray_divider"
+            android:layout_height="4dp"
+            android:background="?attr/colorSecondary"
             app:layout_constraintBottom_toTopOf="@id/tray_container"
             app:layout_constraintTop_toBottomOf="@id/grid_container"
             />

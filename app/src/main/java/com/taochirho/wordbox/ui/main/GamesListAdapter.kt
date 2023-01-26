@@ -1,7 +1,6 @@
 package com.taochirho.wordbox.ui.main
 
 import android.content.res.Configuration
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,40 +42,31 @@ class GamesListAdapter(
         }
 
        fun bind(
-            item: Game,
-            toggleListener: GameStarToggleListener,
-            deleteListener: GameDeleteListener,
-            sendListener: GameSendListener,
-            restoreListener: GameRestoreListener
+           item: Game,
+           toggleListener: GameStarToggleListener,
+           deleteListener: GameDeleteListener,
+           sendListener: GameSendListener,
+           restoreListener: GameRestoreListener
         ) {
 
-         binding.game = item
-
-           // binding.theGrid.setGridGameArray(item)
+           binding.game = item
 
 
-            //binding.letterVisible = item.status != GAME_STATUS.RA
-            val hideLetter = item.status == GAME_STATUS.RA
-
-            binding.theGrid.visibility = View.GONE
-            binding.theTray.visibility = View.GONE
-            binding.divider1?.visibility = View.GONE
+           binding.theGrid.visibility = View.GONE
+           binding.theTray.visibility = View.GONE
+           binding.divider1.visibility = View.GONE
 
            // clearGrid()
 
-            var counts = countTiles(item.gameTiles) // counts is a pair.  First is count on grid, second count on tray
+            val counts = countTiles(item.gameTiles) // counts is a pair.  First is count on grid, second count on tray
 
             if (counts.first > 0 && counts.second > 0) { // i.e tiles in both grid and tray
                 binding.theGrid.visibility = View.VISIBLE
                 binding.theTray.visibility = View.VISIBLE
-                binding.divider1?.visibility = View.VISIBLE
-
-                Log.w("GamesListAdapter", item.toString())
+                binding.divider1.visibility = View.VISIBLE
 
                 binding.theGrid.setGridGameArray(item, item.status != GAME_STATUS.RA)
                 binding.theTray.setGridGameArray(item, counts.second)
-
-
             } else {
                 if (counts.first > 0) { // i.e. all tiles in grid
                     binding.theGrid.setGridGameArray(item, item.status != GAME_STATUS.RA)
@@ -98,17 +88,15 @@ class GamesListAdapter(
             }
 */
 
-            val w: Double
-
             if (itemView.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                w = itemView.resources.configuration.screenWidthDp / 1.8
-                binding.gamesListRow.layoutParams.width = w.toInt()
+
+                binding.gamesListRow.layoutParams.width = (itemView.resources.configuration.screenWidthDp / 1.8).toInt()
                 val pattern = "yy-MM-dd HH:mm"
                 val simpleDateFormat = SimpleDateFormat(pattern, Locale.UK)
                 binding.formattedSavedDate = simpleDateFormat.format(item.dateSaved)
             } else {
                 itemView.resources.displayMetrics.widthPixels
-                w = itemView.resources.displayMetrics.widthPixels.toDouble()
+                binding.gamesListRow.layoutParams.width = itemView.resources.displayMetrics.widthPixels
                 val pattern =
                     "EEEE dd MMMM yyyy 'at' HH:mm" // EEEE has to be exactly 4 characters to be e.g. Saturday
                 val simpleDateFormat = SimpleDateFormat(pattern, Locale.UK)
@@ -194,8 +182,8 @@ class GamesListAdapter(
         fun onClick(uid: Int) = clickListener(uid)
     }
 
-    class GameSendListener(val clickListener: (uid: Int) -> Unit) {
-        fun onClick(uid: Int) = clickListener(uid)
+    class GameSendListener(val clickListener: (game: Game) -> Unit) {
+        fun onClick(game: Game) = clickListener(game)
     }
 
     class GameDeleteListener(val clickListener: (game: Game) -> Unit) {

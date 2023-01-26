@@ -1,4 +1,4 @@
-package com.taochirho.wordbox.ui.theme
+package com.taochirho.wordbox.ui.main.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.graphics.Color

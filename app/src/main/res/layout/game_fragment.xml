@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -7,16 +8,14 @@ android:id="@+id/main"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 app:layout_constraintTop_toTopOf="parent"
-app:layout_constraintBottom_toBottomOf="parent"
-
-    >
+app:layout_constraintBottom_toBottomOf="parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/TCR_toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionBarSizePortrait"
         android:minHeight="@dimen/actionBarSizePortrait"
-        android:background="?attr/toolbar_background"
+        android:background="?attr/colorPrimary"
 
         android:elevation="4dp"
         android:theme="@style/Theme.TCRWordbox"
@@ -31,39 +30,21 @@ app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/tb"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?attr/toolbar_background"
+            android:background="?attr/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" >
 
-            <TextView
-                android:id="@+id/wb_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/titleTextColor"
-
-                android:gravity="center"
-                android:inputType="none"
-
-                android:layout_marginTop="4dp"
-
-                android:text="@string/app_name"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@id/wb_subtitle"
-
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/wb_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/subtitleTextColor"
+                android:textColor="?attr/colorOnSecondary"
                 android:gravity="center"
                 android:inputType="none"
 
                 android:textSize="12sp"
-                app:layout_constraintTop_toBottomOf="@id/wb_title"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/wb_gameCreator"
                 app:layout_constraintStart_toStartOf="parent"
                 />
@@ -75,7 +56,7 @@ app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="2dp"
                 android:text="@string/gameCreatorDefault"
-                android:textColor="?attr/subtitleTextColor"
+                android:textColor="?attr/colorOnSecondary"
 
                 android:gravity="center"
                 android:inputType="none"
@@ -134,6 +115,22 @@ app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
 
                 />
+            <ImageButton
+                android:id="@+id/starter"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/starter_background"
+                android:src="@drawable/ic_baseline_play_circle_24"
+
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintStart_toEndOf="@id/score"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/game_start" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.Toolbar>
@@ -157,4 +154,5 @@ app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

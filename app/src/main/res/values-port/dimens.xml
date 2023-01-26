@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tile_spacing">2dp</dimen>
+    <dimen name="list_padding">1.5dp</dimen>
+    <dimen name="image_button_width">36dp</dimen>
+    <dimen name="image_button_height">48dp</dimen>
+
+    <dimen name="tray_tile_border">1dp</dimen>
+
+    <dimen name="scratchpad_padding">4dp</dimen>
+
+</resources>

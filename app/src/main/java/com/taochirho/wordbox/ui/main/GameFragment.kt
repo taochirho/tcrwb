@@ -1,36 +1,36 @@
 package com.taochirho.wordbox.ui.main
 
-import android.content.Intent
+
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.taochirho.wordbox.CreatePuzzle
 import com.taochirho.wordbox.R
 import com.taochirho.wordbox.application.GAME_STATUS
-import com.taochirho.wordbox.application.Wordbox
+import com.taochirho.wordbox.application.STARTER_ACTION
+import com.taochirho.wordbox.database.CurrentGame
+
 import com.taochirho.wordbox.databinding.GameFragmentBinding
-import com.taochirho.wordbox.model.GameModel
-import com.taochirho.wordbox.model.GameModelFactory
+
+import com.taochirho.wordbox.model.WordBoxViewModel
 
 class GameFragment : Fragment() {
     //    private val TAG = "GameFragment"
-    private val args: GameFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        childFragmentManager.beginTransaction()
-            .add(R.id.grid_container, GridFragment())
-            .add(R.id.tray_container, TrayFragment())
-            .commit()
+        if (savedInstanceState == null) { // test here so multiple fragments aren't created
+            childFragmentManager.beginTransaction()
+                .add(R.id.grid_container, GridFragment())
+                .add(R.id.tray_container, TrayFragment())
+                .commit()
+        }
     }
 
     private var _bindingGame: GameFragmentBinding? = null
@@ -38,73 +38,66 @@ class GameFragment : Fragment() {
     // This property is only valid between onCreateView and
 // onDestroyView.
     private val bindingGame get() = _bindingGame!!
-    private lateinit var gameVM: GameModel
+    private val wordboxVM: WordBoxViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        val application = requireNotNull(this.activity).application as Wordbox
-        gameVM = activity?.let {
-            ViewModelProvider(
-                it.viewModelStore,
-                GameModelFactory(application)
-            )[GameModel::class.java]
-        }!!
-
-        if (args.restoreCurrent) {
-            gameVM.restoreCurrentGame()
-        } else {
-            gameVM.retrieveGame(args.gameID)
-        }
-
         _bindingGame = GameFragmentBinding.inflate(inflater, container, false)
-
         return bindingGame.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        bindingGame.starter.setOnClickListener {
+            wordboxVM.gameStart()
+        }
+
         bindingGame.TCRToolbar.inflateMenu(R.menu.boxset_menu)
-
-
         bindingGame.TCRToolbar.setOnMenuItemClickListener {
+
             when (it.itemId) {
+
                 R.id.new_game_grid -> {
-                    gameVM.loadGrid(true) { ::gameVM.get().randomLetter() }
+                    wordboxVM.loadGrid(true) { ::wordboxVM.get().randomLetter() }
                     true
                 }
                 R.id.new_game_tray -> {
-                    gameVM.loadTray(true) { ::gameVM.get().randomLetter() }
+                   
+                    wordboxVM.loadTray(true) { ::wordboxVM.get().randomLetter() }
+                    true
+                }
+                R.id.save_local -> {
+                    wordboxVM.saveGame(GAME_STATUS.C)
                     true
                 }
                 R.id.save_game_challenge -> {
-                    gameVM.saveGame(GAME_STATUS.C)
+                    wordboxVM.saveGame(GAME_STATUS.C)
                     true
                 }
                 R.id.save_game_solution -> {
-                    gameVM.saveGame(GAME_STATUS.RA)
+                    wordboxVM.saveGame(GAME_STATUS.RA)
                     true
                 }
                 R.id.create_game -> {
-                    val intent = Intent(this.context, CreatePuzzle::class.java)
-                    startActivity(intent)
+                    findNavController().navigate(R.id.gameCreate)
                     true
                 }
                 R.id.gamesList -> {
                     findNavController().navigate(R.id.gamesList)
                     true
                 }
-                R.id.restart -> {
-                    gameVM.startTimer()
+                R.id.reset -> {
+                    wordboxVM.currentGame.value?.let { it1 -> wordboxVM.setTimer(it1.timeSet) }
                     true
                 }
                 R.id.shuffle_game_grid -> {
-                    gameVM.loadGrid(false) { ::gameVM.get().shuffledLetter() }
+                    wordboxVM.loadGrid(false) { ::wordboxVM.get().shuffledLetter() }
                     true
                 }
                 R.id.shuffle_game_tray -> {
-                    gameVM.loadTray(false) { ::gameVM.get().shuffledLetter() }
+                    wordboxVM.loadTray(false) { ::wordboxVM.get().shuffledLetter() }
                     true
                 }
                 R.id.prefs -> {
@@ -138,14 +131,10 @@ class GameFragment : Fragment() {
         @ColorInt val color = typedValue.data
 */
 
-
-
-        gameVM.gameTag.observe(viewLifecycleOwner, gameTagObserver)
-        gameVM.gameCreator.observe(viewLifecycleOwner, gameCreatorObserver)
-        gameVM.millisecondsLeft.observe(viewLifecycleOwner, timeLeftObserver)
-        gameVM.score.observe(viewLifecycleOwner, scoreObserver)
-        /*  gameVM.duration.observe(viewLifecycleOwner, durationObserver)
-          gameVM.tileCount.observe(viewLifecycleOwner, tilesObserver)*/
+        wordboxVM.currentGame.observe(viewLifecycleOwner, currentGameObserver)
+        wordboxVM.millisecondsLeft.observe(viewLifecycleOwner, timeLeftObserver)
+        wordboxVM.score.observe(viewLifecycleOwner, scoreObserver)
+        wordboxVM.starterAction.observe(viewLifecycleOwner, starterActionObserver)
 
     }
 
@@ -158,7 +147,8 @@ class GameFragment : Fragment() {
             bindingGame.timer.text =
                 String.format(resources.configuration.locales[0], "%d:%02d", minutes, seconds)
         } else {
-            bindingGame.timer.text = resources.getText(R.string.timer_ended)
+            bindingGame.timer.text =
+                String.format(resources.configuration.locales[0], "%d:%02d", 0, 0)
         }
     }
 
@@ -166,21 +156,49 @@ class GameFragment : Fragment() {
         bindingGame.score.text = it.toString()
     }
 
-    private val gameTagObserver = Observer<String> {
-        //bindingGame.TCRToolbar.subtitle =  String.format(resources.getString(R.string.app_subtitle), it)
-        bindingGame.TCRToolbar.findViewById<TextView>(R.id.wb_subtitle).text = it
+    private val currentGameObserver = Observer<CurrentGame> {
+        bindingGame.TCRToolbar.findViewById<TextView>(R.id.wb_subtitle).text = it.gameTag
+        bindingGame.TCRToolbar.findViewById<TextView>(R.id.wb_gameCreator).text = it.gameFrom
+        wordboxVM.loadGame(it)
     }
 
-    private val gameCreatorObserver = Observer<String> {
-        //bindingGame.TCRToolbar.subtitle =  String.format(resources.getString(R.string.app_subtitle), it)
-        bindingGame.TCRToolbar.findViewById<TextView>(R.id.wb_gameCreator).text = it
-    }
+    private val starterActionObserver = Observer<STARTER_ACTION> {
 
+        with(bindingGame.starter) {
+            when (it) {
+                STARTER_ACTION.S -> {
+                    setImageDrawable(context?.let {
+                        ContextCompat.getDrawable(it, R.drawable.ic_baseline_play_circle_24)
+                    })
+                    contentDescription = resources.getString(R.string.game_start)//"Play"//
+                }
+                STARTER_ACTION.P -> {
+                    setImageDrawable(context?.let {
+                        ContextCompat.getDrawable(it, R.drawable.ic_baseline_pause_circle_24)
+                    })
+                    contentDescription = resources.getString(R.string.game_pause)
+                }
+
+                STARTER_ACTION.F -> {
+                    setImageDrawable(context?.let {
+                        ContextCompat.getDrawable(it, R.drawable.ic_baseline_stop_circle_24)
+                    })
+                    contentDescription = resources.getString(R.string.restart_timer)
+                }
+
+                else -> {
+                    setImageDrawable(context?.let { //observer may be null in Java
+                        ContextCompat.getDrawable(it, R.drawable.ic_baseline_play_circle_24)
+                    })
+                    contentDescription = resources.getString(R.string.game_start)//"Play"
+                }
+            }
+        }
+    }
 
     override fun onDestroyView() {
-
-        gameVM.updateCurrentGame()
-        super.onDestroyView()
+        wordboxVM.updateCurrentGame()
         _bindingGame = null
+        super.onDestroyView()
     }
 }

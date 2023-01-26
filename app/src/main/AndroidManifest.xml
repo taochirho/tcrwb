@@ -10,25 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TCRWordbox">
 
-      <!--  <service
-            android:label="@string/app_name"
-            android:name="android.service.textservice.SpellCheckerService"
-            android:permission="android.permission.BIND_TEXT_SERVICE"
-            android:exported="true">
-            <intent-filter >
-                <action android:name="android.service.textservice.SpellCheckerService" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.view.textservice.scs"
-                android:resource="@xml/spellchecker" />
-        </service>
--->
         <activity
-            android:name=".CreatePuzzle"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".application.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

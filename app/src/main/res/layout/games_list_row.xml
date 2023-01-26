@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <data>
 
         <import type="java.util.List" />
@@ -25,7 +24,6 @@
             name="restoreClickListener"
             type="com.taochirho.wordbox.ui.main.GamesListAdapter.GameRestoreListener" />
 
-
         <variable
             name="game"
             type="com.taochirho.wordbox.database.Game" />
@@ -44,7 +42,7 @@
 
         android:layout_margin="@dimen/list_margin"
         android:animateLayoutChanges="true"
-        android:background="?attr/list_game_background"
+        android:background="?attr/backgroundColor"
         android:padding="@dimen/list_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,9 +50,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/list_padding"
-            android:background="?attr/list_tray_background"
+            android:background="?attr/colorPrimaryDark"
 
-            app:layout_constraintBottom_toTopOf="@id/gameActions"
+            app:layout_constraintBottom_toTopOf="@id/theGrid"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -66,6 +64,7 @@
                 android:inputType="none"
                 android:text='@{game.gameTag}'
                 android:textSize="18sp"
+                android:textColor="?attr/colorOnSecondary"
                 app:layout_constraintBottom_toTopOf="@id/game_owner"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -79,6 +78,7 @@
                 android:inputType="none"
                 android:text='@{game.gameFrom}'
                 android:textSize="18sp"
+                android:textColor="?attr/colorOnSecondary"
                 app:layout_constraintBottom_toTopOf="@id/date_stored"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/game_tag" />
@@ -93,6 +93,7 @@
                 android:inputType="none"
                 android:text='@{formattedSavedDate}'
                 android:textSize="12sp"
+                android:textColor="?attr/colorOnSecondary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/game_owner" />
@@ -105,100 +106,87 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/list_padding"
-
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintTop_toBottomOf="@id/gameInfo"  />
-
-
-           <!--
-    android:background="?attr/list_game_background"
-
+            android:background="?attr/colorSurface"
             app:bottom_border="@dimen/bottom_border"
-
-
-
- app:grid_color="?attr/grid_background"
             app:grid_tile_border="@dimen/grid_tile_border"
-
             app:horizontal_inside="@dimen/horizontal_inside"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toBottomOf="@id/gameInfo"
 
             app:left_border="@dimen/left_border"
             app:right_border="@dimen/right_border"
-            app:text_color="?attr/list_game_background"
-            app:tile_border_color="?attr/tile_border"
-
-            app:tile_correct_color="?attr/tile_right"
-            app:tile_nearly_color="?attr/tile_nearly_right"
-            app:tile_wrong_color="?attr/tile_wrong"
             app:top_border="@dimen/top_border"
-            app:vertical_inside="@dimen/vertical_inside"
-            />-->
+            app:vertical_inside="@dimen/vertical_inside" />
 
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?attr/colorSecondary"
+            app:layout_constraintBottom_toTopOf="@id/theTray"
+            app:layout_constraintTop_toBottomOf="@id/theGrid"
+
+            />
 
         <com.taochirho.wordbox.ui.main.GameTrayView
             android:id="@+id/theTray"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/list_padding"
-            app:layout_constraintTop_toBottomOf="@id/theGrid"/>
 
-          <!--  android:background="?attr/list_tray_background"
-            app:tray_background_color="?attr/list_tray_background"
-            app:tray_tile_background_color="?attr/tile_tray"
+            android:background="?attr/colorPrimaryDark"
 
+            app:layout_constraintTop_toBottomOf="@id/divider1"
             app:tray_tile_border="@dimen/tray_tile_border"
-            app:tray_tile_border_color="?attr/tile_tray_border_color"
-            app:tray_tile_spacing="@dimen/tile_spacing"
-            app:tray_tile_text_color="?attr/letter_color_tray" />-->
+            app:tray_tile_spacing="@dimen/tile_spacing" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/gameActions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/list_padding"
-            android:background="?attr/list_tray_background"
+            android:background="?attr/colorPrimaryDark"
 
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gameInfo">
+            app:layout_constraintTop_toBottomOf="@id/theTray">
 
             <ImageButton
                 android:id="@+id/toggleStarBtn"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/image_button_height"
                 android:layout_margin="@dimen/games_list_margin"
-                android:backgroundTint="?attr/button_background"
-                android:contentDescription="@string/restore"
+                android:backgroundTint="?attr/colorSurface"
+                android:contentDescription="@string/toggle"
                 android:onClick="@{() -> toggleLetterStarClickListener.onClick(game)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/restoreBtn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/togglestar"
-                app:tint="?attr/restore_tint" />
+                app:srcCompat="@drawable/toggle_star" />
 
             <ImageButton
                 android:id="@+id/restoreBtn"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/image_button_height"
                 android:layout_margin="@dimen/games_list_margin"
-                android:backgroundTint="?attr/button_background"
+                android:backgroundTint="?attr/colorSurface"
                 android:contentDescription="@string/restore"
                 android:onClick="@{() -> restoreClickListener.onClick(game.uid)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/sendBtn"
                 app:layout_constraintStart_toEndOf="@id/toggleStarBtn"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_restore_24"
-                app:tint="?attr/restore_tint" />
+                app:srcCompat="@drawable/ic_restore_24" />
 
             <ImageButton
                 android:id="@+id/sendBtn"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/image_button_height"
                 android:layout_margin="@dimen/games_list_margin"
-                android:backgroundTint="?attr/button_background"
-                android:contentDescription="@string/delete"
-                android:onClick="@{() -> sendClickListener.onClick(game.uid)}"
+                android:backgroundTint="?attr/colorSurface"
+                android:contentDescription="@string/send"
+                android:onClick="@{() -> sendClickListener.onClick(game)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/deleteBtn"
                 app:layout_constraintStart_toEndOf="@id/restoreBtn"
@@ -209,9 +197,9 @@
             <ImageButton
                 android:id="@+id/deleteBtn"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/image_button_height"
                 android:layout_margin="@dimen/games_list_margin"
-                android:backgroundTint="?attr/button_background"
+                android:backgroundTint="?attr/colorSurface"
                 android:contentDescription="@string/delete"
                 android:onClick="@{() -> deleteClickListener.onClick(game)}"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -222,6 +210,8 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

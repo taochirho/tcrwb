@@ -10,7 +10,8 @@ import androidx.core.view.GestureDetectorCompat
 import com.taochirho.wordbox.R
 import com.taochirho.wordbox.database.TilePos
 import com.taochirho.wordbox.database.TileState
-import com.taochirho.wordbox.model.GameModel
+
+import com.taochirho.wordbox.model.WordBoxViewModel
 
 
 class TCRTile : androidx.appcompat.widget.AppCompatTextView  {
@@ -19,9 +20,8 @@ class TCRTile : androidx.appcompat.widget.AppCompatTextView  {
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context!!, attrs, defStyleAttr)
 
     private lateinit var mGestureDetector: GestureDetectorCompat
-    private var viewModel : GameModel? = null
+    private var wordboxVM : WordBoxViewModel? = null
     private lateinit var tilePos: TilePos
-
 
     private var startX = 0F
     private var startY = 0F
@@ -34,15 +34,17 @@ class TCRTile : androidx.appcompat.widget.AppCompatTextView  {
             invalidate()
         }
 
-    fun connectViewModel(viewModel: GameModel, tilePos: TilePos) {
-        this.viewModel = viewModel
+    fun connectViewModel(wordboxVM: WordBoxViewModel, tilePos: TilePos) {
+        this.wordboxVM = wordboxVM
         this.tilePos = tilePos
 
-        mGestureDetector = GestureDetectorCompat(context, TCRTileGestureListener(viewModel, tilePos, tileState ))
+        mGestureDetector = GestureDetectorCompat(context, TCRTileGestureListener(wordboxVM, tilePos, tileState ))
         mGestureDetector.setIsLongpressEnabled(false)
         }
 
     override fun onCreateDrawableState(extraSpace: Int): IntArray? {
+
+
         if (tileState == null) {  //ignore warning that this is always false.  App crashes if this test is removed
             return super.onCreateDrawableState(extraSpace)
         }
@@ -64,7 +66,7 @@ class TCRTile : androidx.appcompat.widget.AppCompatTextView  {
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
-        val gm = viewModel ?: return false
+        val gm = wordboxVM ?: return false
 
         if (gm.timerRunning.value != true) {
             return false
@@ -108,7 +110,7 @@ class TCRTile : androidx.appcompat.widget.AppCompatTextView  {
         return true
     }
 
-    private class TCRTileGestureListener(private val gm: GameModel, private val tilePos: TilePos, private val tileState:TileState): GestureDetector.SimpleOnGestureListener() {
+    private class TCRTileGestureListener(private val gm: WordBoxViewModel, private val tilePos: TilePos, private val tileState:TileState): GestureDetector.SimpleOnGestureListener() {
 
         override fun onDoubleTap(e: MotionEvent): Boolean {
             if ((tileState == TileState.IN_TRAY)){  // ignore double taps in tray

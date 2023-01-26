@@ -6,20 +6,26 @@
     <item android:title="@string/current">
         <menu>
             <item
-                android:id="@+id/restart"
+                android:id="@+id/reset"
                 android:icon="@drawable/ic_more_time"
                 android:title="@string/restart_timer"
-                app:showAsAction="ifRoom" />
+                app:showAsAction="never" />
             <item
                 android:id="@+id/shuffle_game_grid"
-                android:icon="@drawable/shufflegrid"
+                android:icon="@drawable/shuffle_grid"
                 android:title="@string/shuffle_grid"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/shuffle_game_tray"
-                android:icon="@drawable/shuffletray"
+                android:icon="@drawable/shuffle_tray"
                 android:title="@string/shuffle_tray"
                 app:showAsAction="never" />
+            <item
+                android:id="@+id/save_local"
+                android:icon="@drawable/ic_baseline_save_24"
+                android:title="@string/save_game_l"
+                app:showAsAction="ifRoom" />
+
             <item
                 android:id="@+id/save_game_challenge"
                 android:icon="@drawable/ic_baseline_save_24"
@@ -39,18 +45,18 @@
         <menu>
             <item
                 android:id="@+id/new_game_grid"
-                android:icon="@drawable/newgrid"
+                android:icon="@drawable/new_grid"
                 android:title="@string/start_grid"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/new_game_tray"
-                android:icon="@drawable/newtray"
+                android:icon="@drawable/new_tray"
                 android:title="@string/start_tray"
                 app:showAsAction="never" />
 
             <item
                 android:id="@+id/create_game"
-                android:icon="@drawable/creategame"
+                android:icon="@drawable/create_game"
                 android:title="@string/create_new"
                 app:showAsAction="never" />
 
@@ -61,7 +67,7 @@
 
     <item
         android:id="@+id/gamesList"
-        android:icon="@drawable/savedgames"
+        android:icon="@drawable/saved_games"
         android:title="@string/stored_games"
         app:showAsAction="never" />
 

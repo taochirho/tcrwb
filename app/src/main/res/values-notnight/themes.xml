@@ -1,64 +1,39 @@
-<resources>
+<resources >
     <!-- Base application theme. -->
-
     <style name="Theme.TCRWordbox" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-<!--        <item name="grid_background">@color/BlueGray200</item>-->
-<!--        <item name="tray_background">@color/BlueGray300</item>-->
-        <item name="tray_divider">@color/BlueGray500</item>
-        <item name="tray_divider_highlight">@color/BlueGray600</item>
-        <item name="list_background">@color/BlueGray200</item>
-        <item name="list_game_background">@color/BlueGray200</item>
-        <item name="list_tray_background">@color/BlueGray200</item>
-        <item name="toolbar_background">@color/BlueGray50</item>
+        <item name="colorPrimary"> @color/Green200</item>
+        <item name="colorPrimaryDark"> @color/LightGreen50</item>
+        <item name="colorSecondary"> @color/Amber300</item>
+        <item name="colorSurface"> @color/LightGreen100</item>
+        <item name="colorError"> @color/Red600</item>
+        <item name="backgroundColor"> @color/OffWhite</item>
 
-        <item name="divider">@color/Amber600</item>
-
-        <item name="restore_tint">@color/LightGreenA200</item>
-        <item name="android:textColor"> @color/BlueGray900 </item>
-        <item name="android:textColorPrimary"> @color/BlueGray800</item>
-        <item name="android:textColorSecondary"> @color/BlueGray700</item>
-
-        <item name="titleTextColor"> @color/BlueGray900 </item>
-        <item name="subtitleTextColor"> @color/BlueGray700 </item>
+        <item name="colorOnPrimary"> @color/LightGreen1000</item>
+        <item name="colorOnSecondary"> @color/LightGreen700</item>
+        <item name="colorOnBackground">@color/BlueGray800</item>
+        <item name="colorOnSurface"> @color/LightGreen1000</item>
+        <item name="colorOnError"> @color/Red600</item>
 
         <item name="tile_empty">@color/BlueGray700</item>
-        <item name="tile_entered">@color/BlueGray600</item>
+        <item name="tile_entered">@color/BlueGray500</item>
 
-        <item name="tile_swap_border">@color/DeepPurple300</item>
-        <item name="tile_swap_background">@color/DeepPurple600</item>
-
-        <item name="tile_swap_background_entered">@color/BlueGray800</item>
-
-        <item name="tile_start_border">@color/LightGreen600</item>
-        <item name="tile_start_background">@color/LightGreen500</item>
-
-        <item name="tile_right">@color/LightGreen300</item>
-        <item name="tile_nearly_right">@color/Amber300</item>
-        <item name="tile_wrong">@color/Red300</item>
-        <item name="tile_tray">@color/BlueGray300</item>
-
-<!--        <item name="grid_tile_border_color">@color/BlueGray100</item>-->
-<!--        <item name="grid_letter_color">@color/LightGreenA400</item>-->
-
-<!--        <item name="tray_tile_border_color">@color/BlueGray100</item>-->
-<!--        <item name="tray_letter_color">@color/LightGreenA400</item>-->
-
-        <item name="tile_border">@color/BlueGray100</item>
-        <item name="button_background">@color/BlueGray300</item>
-
-        <item name="menu_background">@color/BlueGray500</item>
-        <item name="menu_border_color">@color/Red600</item>
+        <item name="tile_right">@color/LightGreenA200</item>
+        <item name="tile_nearly_right">@color/AmberA200</item>
+        <item name="tile_wrong">@color/RedA200</item>
+        <item name="tile_tray">@color/BlueGray200</item>
     </style>
 
     <style name="TCRToolBarTheme">
         <item name="actionOverflowMenuStyle">@style/TCRPopupMenu</item>
-        <item name="android:textColorPrimary">@color/menu_text_night</item>
-        <item name="android:textColorSecondary">@color/menu_textSecondary_night</item>
+        <item name="android:textColorPrimary">@color/LightGreenA700</item>
+        <item name="android:textColorSecondary">@color/LightGreenA400</item>
     </style>
 
     <style name="TCRPopupMenu"  parent="ThemeOverlay.AppCompat.Dark">
         <item name="android:popupBackground">@drawable/custom_popup_background</item>
     </style>
 
+
 </resources>
+

@@ -1,116 +1,124 @@
-package com.taochirho.wordbox
-
+package com.taochirho.wordbox.ui.main
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.ComponentActivity
-
-
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
-import com.taochirho.wordbox.model.GameCreateModel
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Shadow
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.taochirho.wordbox.R
 import com.taochirho.wordbox.application.TOAST_MSGS
-import com.taochirho.wordbox.application.Wordbox
-import com.taochirho.wordbox.model.GameCreateModelFactory
-import com.taochirho.wordbox.ui.theme.TCRCreatePuzzleTheme
+import com.taochirho.wordbox.databinding.GameCreateFragmentBinding
+import com.taochirho.wordbox.model.WordBoxViewModel
+import com.taochirho.wordbox.ux.views.theme.TCRCreatePuzzleTheme
+
+class GameCreateFragment : Fragment() {
 
 
+    private val wordboxVM: WordBoxViewModel by activityViewModels()
+    private var _binding: GameCreateFragmentBinding? = null
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding get() = _binding!!
 
-class CreatePuzzle : ComponentActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setContent {
-            TCRCreatePuzzleTheme {
-                CreatePuzzleScreen()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = GameCreateFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+        binding.composeView.apply {
+            // Dispose of the Composition when the view's LifecycleOwner
+            // is destroyed
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                // In Compose world
+                TCRCreatePuzzleTheme {
+                    CreatePuzzleScreen()
+                }
             }
         }
+        return view
     }
 
     @Composable
-    fun CreatePuzzleScreen(
+    fun CreatePuzzleScreen()
+    {
+        val letterCount by wordboxVM.letterCount.observeAsState(0)
 
-        vm: GameCreateModel = ViewModelProvider(
-            viewModelStore,
-            GameCreateModelFactory(application as Wordbox)
-        ).get(GameCreateModel::class.java)
-
-
-    ) {
-        val letterCount by vm.letterCount.observeAsState(0)
-
-        vm.toastMsg.observe(this, Observer {
-            it.getContentIfNotHandled()?.let {
+        wordboxVM.toastMsg.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let {
                 when (it) {
                     TOAST_MSGS.OUT_OF_RANGE -> Toast.makeText(
-                        this,
+                        activity,
                         R.string.toast_enter_between,
                         Toast.LENGTH_SHORT
                     ).show()
 
                     TOAST_MSGS.NOT_A_NUMBER -> Toast.makeText(
-                        this,
+                        activity,
                         R.string.toast_only_digits,
                         Toast.LENGTH_SHORT
                     ).show()
 
                     TOAST_MSGS.NO_TILES -> Toast.makeText(
-                        this,
+                        activity,
                         R.string.toast_game_not_saved,
                         Toast.LENGTH_SHORT
                     ).show()
 
                     TOAST_MSGS.GAME_SAVED -> Toast.makeText(
-                        this,
+                        activity,
                         R.string.toast_game_saved,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             }
-        })
+        }
 
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.surface
         )
         {
-            Scaffold(vm, letterCount)
+            Scaffold(wordboxVM, letterCount)
         }
     }
 
     @Composable
     fun Scaffold(
-        vm: GameCreateModel,
+        wordboxVM: WordBoxViewModel,
         letterCount: Int
     ) {
         val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
-
+        val density = resources.displayMetrics.density
         Scaffold(
             scaffoldState = scaffoldState,
             topBar = {
@@ -129,7 +137,7 @@ class CreatePuzzle : ComponentActivity() {
                                 Text(
                                     stringResource(R.string.app_name),
                                     style = MaterialTheme.typography.h5,
-                                    color = MaterialTheme.colors.onSurface
+                                    color = MaterialTheme.colors.onPrimary
 
                                 )
                                 Text(
@@ -156,18 +164,19 @@ class CreatePuzzle : ComponentActivity() {
                                     Text(
                                         text = "$letterCount",
                                         style = MaterialTheme.typography.h4.copy(
-                                            color = MaterialTheme.colors.onSurface,
+                                            color = MaterialTheme.colors.onPrimary,
                                             shadow = Shadow(
                                                 color = MaterialTheme.colors.background,
-                                                offset = Offset(3.0f, 6.0f),
-                                                blurRadius = 2f
+                                                offset = Offset(0.5F / density, 1.0F / density),
+                                                blurRadius = 0.5F / density
                                             )
                                         )
                                     )
                                 }
                             }
                         }
-                    },
+                    }
+
                 )
             },
 
@@ -179,6 +188,7 @@ class CreatePuzzle : ComponentActivity() {
                         BoxWithConstraints(
                             modifier = Modifier
                                 .padding(2.dp)
+
 
                         ) {
 
@@ -192,22 +202,22 @@ class CreatePuzzle : ComponentActivity() {
                             val tcrTextStyle = MaterialTheme.typography.body1.copy(
                                 color = MaterialTheme.colors.onSurface,
                                 shadow = Shadow(
-                                    color = MaterialTheme.colors.surface,
-                                    offset = Offset(3.0f, 6.0f),
-                                    blurRadius = 2f
+                                    color =  MaterialTheme.colors.surface,
+                                    offset = Offset(0.5F / density, 1.0F / density),
+                                    blurRadius = 0.5F / density
                                 ),
                                 fontSize = with(LocalDensity.current) {
                                     if (constraints.maxHeight > constraints.maxWidth) {
-                                        (constraints.maxWidth / 1.2f) / if (vm.uiState.cols > vm.uiState.rows) {
-                                            vm.uiState.cols
+                                        (constraints.maxWidth / 1.6f) / if (wordboxVM.uiState.cols > wordboxVM.uiState.rows) {
+                                            wordboxVM.uiState.cols
                                         } else {
-                                            vm.uiState.rows
+                                            wordboxVM.uiState.rows
                                         }
                                     } else {
-                                        (constraints.maxHeight / 1.2f) / if (vm.uiState.cols > vm.uiState.rows) {
-                                            vm.uiState.cols
+                                        (constraints.maxHeight / 1.6f) / if (wordboxVM.uiState.cols > wordboxVM.uiState.rows) {
+                                            wordboxVM.uiState.cols
                                         } else {
-                                            vm.uiState.rows
+                                            wordboxVM.uiState.rows
                                         }
                                     }.toSp()
                                 }
@@ -217,26 +227,26 @@ class CreatePuzzle : ComponentActivity() {
                                 modifier = Modifier
                                     .size(gridWidthDP, gridWidthDP),
 
-                                cols = vm.uiState.cols,
-                                rows = vm.uiState.rows
+                                cols = wordboxVM.uiState.cols,
+                                rows = wordboxVM.uiState.rows
                             ) {
-                                List(vm.uiState.rows * vm.uiState.cols)
+                                List(wordboxVM.uiState.rows * wordboxVM.uiState.cols)
                                 {
 
-                                    val input: Char by vm.getEnteredLetter(it)
+                                    val input: Char by wordboxVM.getEnteredLetter(it)
                                         .observeAsState('\u0020')
 
                                     GridCell(
                                         input.toString(),
                                         it,
-                                        onIndexedValueChange = { TextFieldValue, index: Int -> },
+                                        onIndexedValueChange = { _, _: Int -> },
                                         tcrTextStyle
                                     )
                                 }
                             }
                         }
                         Row(Modifier.fillMaxWidth(1f), Arrangement.SpaceAround) {
-                            Button(onClick = { vm.unShuffleLetters() }) {
+                            Button(onClick = { wordboxVM.unShuffleLetters() }) {
                                 Text(stringResource(R.string.unshuffle))
                             }
                         }
@@ -263,21 +273,21 @@ class CreatePuzzle : ComponentActivity() {
                                 color = MaterialTheme.colors.onSurface,
                                 shadow = Shadow(
                                     color = MaterialTheme.colors.surface,
-                                    offset = Offset(3.0f, 6.0f),
-                                    blurRadius = 2f
+                                    offset = Offset(0.5F / density, 1.0F / density),
+                                    blurRadius = 0.5F / density
                                 ),
                                 fontSize = with(LocalDensity.current) {
                                     if (constraints.maxHeight > constraints.maxWidth) {
-                                        (constraints.maxWidth / 1.2f) / if (vm.uiState.cols > vm.uiState.rows) {
-                                            vm.uiState.cols
+                                        (constraints.maxWidth / 1.6f) / if (wordboxVM.uiState.cols > wordboxVM.uiState.rows) {
+                                            wordboxVM.uiState.cols
                                         } else {
-                                            vm.uiState.rows
+                                            wordboxVM.uiState.rows
                                         }
                                     } else {
-                                        (constraints.maxHeight / 1.2f) / if (vm.uiState.cols > vm.uiState.rows) {
-                                            vm.uiState.cols
+                                        (constraints.maxHeight / 1.6f) / if (wordboxVM.uiState.cols > wordboxVM.uiState.rows) {
+                                            wordboxVM.uiState.cols
                                         } else {
-                                            vm.uiState.rows
+                                            wordboxVM.uiState.rows
                                         }
                                     }.toSp()
                                 }
@@ -287,13 +297,13 @@ class CreatePuzzle : ComponentActivity() {
                                 modifier = Modifier
                                     .size(gridWidthDP, gridWidthDP),
 
-                                cols = vm.uiState.cols,
-                                rows = vm.uiState.rows
+                                cols = wordboxVM.uiState.cols,
+                                rows = wordboxVM.uiState.rows
                             ) {
-                                List(vm.uiState.rows * vm.uiState.cols)
+                                List(wordboxVM.uiState.rows * wordboxVM.uiState.cols)
                                 {
 
-                                    val input: Char by vm.getEnteredLetter(it)
+                                    val input: Char by wordboxVM.getEnteredLetter(it)
                                         .observeAsState('\u0020')
 
                                     GridCell(
@@ -311,7 +321,7 @@ class CreatePuzzle : ComponentActivity() {
                                 .padding(64.dp, 0.dp, 0.dp, 0.dp),
                             Arrangement.Center
                         ) {
-                            Button(onClick = { vm.unShuffleLetters() }) {
+                            Button(onClick = { wordboxVM.unShuffleLetters() }) {
                                 Text(stringResource(R.string.unshuffle))
                             }
                         }
@@ -345,21 +355,21 @@ class CreatePuzzle : ComponentActivity() {
                             color = MaterialTheme.colors.onSurface,
                             shadow = Shadow(
                                 color = MaterialTheme.colors.surface,
-                                offset = Offset(3.0f, 6.0f),
-                                blurRadius = 2f
+                                offset = Offset(0.5F / density, 1.0F / density),
+                                blurRadius = 0.5F / density
                             ),
                             fontSize = with(LocalDensity.current) {
                                 if (constraints.maxHeight > constraints.maxWidth) {
-                                    (constraints.maxWidth / 1.2f) / if (vm.uiState.cols > vm.uiState.rows) {
-                                        vm.uiState.cols
+                                    (constraints.maxWidth / 1.6f) / if (wordboxVM.uiState.cols > wordboxVM.uiState.rows) {
+                                        wordboxVM.uiState.cols
                                     } else {
-                                        vm.uiState.rows
+                                        wordboxVM.uiState.rows
                                     }
                                 } else {
-                                    (constraints.maxHeight / 1.2f) / if (vm.uiState.cols > vm.uiState.rows) {
-                                        vm.uiState.cols
+                                    (constraints.maxHeight / 1.6f) / if (wordboxVM.uiState.cols > wordboxVM.uiState.rows) {
+                                        wordboxVM.uiState.cols
                                     } else {
-                                        vm.uiState.rows
+                                        wordboxVM.uiState.rows
                                     }
                                 }.toSp()
                             }
@@ -368,18 +378,18 @@ class CreatePuzzle : ComponentActivity() {
                         TCRSquareGrid(
                             modifier = Modifier
                                 .size(gridWidthDP, gridWidthDP),
-                            cols = vm.uiState.cols,
-                            rows = vm.uiState.rows
+                            cols = wordboxVM.uiState.cols,
+                            rows = wordboxVM.uiState.rows
                         ) {
-                            List(vm.uiState.rows * vm.uiState.cols)
+                            List(wordboxVM.uiState.rows * wordboxVM.uiState.cols)
                             {
-                                val input: Char by vm.getLetter(it).observeAsState('\u0020')
+                                val input: Char by wordboxVM.getLetter(it).observeAsState('\u0020')
 
                                 GridCell(
                                     input.toString(),
                                     it,
                                     onIndexedValueChange = { input: TextFieldValue, index: Int ->
-                                        vm.processInput(input, index)
+                                        wordboxVM.processInput(input, index)
                                     },
                                     tcrTextStyle
                                 )
@@ -393,27 +403,27 @@ class CreatePuzzle : ComponentActivity() {
                             .padding(20.dp, 2.dp, 0.dp, 2.dp),
                         verticalArrangement = Arrangement.SpaceAround) {
                         Row(Modifier.fillMaxWidth(0.5f), Arrangement.Start) {
-                            val gameDuration: Int by vm.gameDuration.observeAsState(0)
-                            GameTimeEntry(gameDuration = gameDuration, onDurationChange = {input: String -> vm.onDurationChange(input) } )
+                            val gameDuration: Int by wordboxVM.gameDuration.observeAsState(0)
+                            GameTimeEntry(gameDuration = gameDuration, onDurationChange = {input: String -> wordboxVM.onDurationChange(input) } )
 
                         }
 
                         Row(Modifier.fillMaxWidth(1f), Arrangement.SpaceAround) {
                             Button(onClick = {
-                                if (vm.letterCount.value!! > 0) {
-                                    vm.saveGame()
+                                if (wordboxVM.letterCount.value!! > 0) {
+                                    wordboxVM.saveGame()
                                 } else {
-                                    vm.setToastMsg(TOAST_MSGS.NO_TILES)
+                                    wordboxVM.setToastMsg(TOAST_MSGS.NO_TILES)
 
                                 }
                             })
                             {
                                 Text(stringResource(R.string.save_game))
                             }
-                            Button(onClick = { vm.shuffleLetters() }) {
+                            Button(onClick = { wordboxVM.shuffleLetters() }) {
                                 Text(stringResource(R.string.shuffle))
                             }
-                            Button(onClick = { vm.clearLetters() }) {
+                            Button(onClick = { wordboxVM.clearLetters() }) {
                                 Text(stringResource(R.string.clear))
                             }
 
@@ -422,16 +432,17 @@ class CreatePuzzle : ComponentActivity() {
 
                     Row(Modifier.fillMaxWidth(1f), Arrangement.SpaceAround) {
                         Button(onClick = {
-                            if (vm.letterCount.value!! > 0) {
+
+                            if (wordboxVM.letterCount.value!! > 0) {
                                 Toast.makeText(
-                                    applicationContext,
+                                    activity,
                                     R.string.toast_game_saved,
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                vm.saveGame()
+                                wordboxVM.saveGame()
                             } else {
                                 Toast.makeText(
-                                    applicationContext,
+                                    activity,
                                     R.string.toast_game_not_saved,
                                     Toast.LENGTH_SHORT
                                 ).show()
@@ -440,10 +451,10 @@ class CreatePuzzle : ComponentActivity() {
                         {
                             Text(stringResource(R.string.save_game))
                         }
-                        Button(onClick = { vm.shuffleLetters() }) {
+                        Button(onClick = { wordboxVM.shuffleLetters() }) {
                             Text(stringResource(R.string.shuffle))
                         }
-                        Button(onClick = { vm.clearLetters() }) {
+                        Button(onClick = { wordboxVM.clearLetters() }) {
                             Text(stringResource(R.string.clear))
                         }
 
@@ -472,21 +483,21 @@ class CreatePuzzle : ComponentActivity() {
                             color = MaterialTheme.colors.onSurface,
                             shadow = Shadow(
                                 color = MaterialTheme.colors.surface,
-                                offset = Offset(3.0f, 6.0f),
-                                blurRadius = 2f
+                                offset = Offset(0.5F / density, 1.0F / density),
+                                blurRadius = 0.5F / density
                             ),
                             fontSize = with(LocalDensity.current) {
                                 if (constraints.maxHeight > constraints.maxWidth) {
-                                    (constraints.maxWidth / 1.2f) / if (vm.uiState.cols > vm.uiState.rows) {
-                                        vm.uiState.cols
+                                    (constraints.maxWidth / 1.6f) / if (wordboxVM.uiState.cols > wordboxVM.uiState.rows) {
+                                        wordboxVM.uiState.cols
                                     } else {
-                                        vm.uiState.rows
+                                        wordboxVM.uiState.rows
                                     }
                                 } else {
-                                    (constraints.maxHeight / 1.2f) / if (vm.uiState.cols > vm.uiState.rows) {
-                                        vm.uiState.cols
+                                    (constraints.maxHeight / 1.6f) / if (wordboxVM.uiState.cols > wordboxVM.uiState.rows) {
+                                        wordboxVM.uiState.cols
                                     } else {
-                                        vm.uiState.rows
+                                        wordboxVM.uiState.rows
                                     }
                                 }.toSp()
                             }
@@ -496,17 +507,17 @@ class CreatePuzzle : ComponentActivity() {
                             modifier = Modifier
 
                                 .size(gridWidthDP, gridWidthDP),
-                            cols = vm.uiState.cols,
-                            rows = vm.uiState.rows
+                            cols = wordboxVM.uiState.cols,
+                            rows = wordboxVM.uiState.rows
                         ) {
-                            List(vm.uiState.rows * vm.uiState.cols)
+                            List(wordboxVM.uiState.rows * wordboxVM.uiState.cols)
                             {
-                                val input: Char by vm.getLetter(it).observeAsState('\u0020')
+                                val input: Char by wordboxVM.getLetter(it).observeAsState('\u0020')
                                 GridCell(
                                     input.toString(),
                                     it,
                                     onIndexedValueChange = { input: TextFieldValue, index: Int ->
-                                        vm.processInput(input, index)
+                                        wordboxVM.processInput(input, index)
                                     },
                                     tcrTextStyle
                                 )
@@ -521,8 +532,8 @@ class CreatePuzzle : ComponentActivity() {
                             .padding(0.dp, 0.dp, 12.dp, 0.dp),
                         Arrangement.SpaceAround
                     )  {
-                        val gameDuration: Int by vm.gameDuration.observeAsState(0)
-                        GameTimeEntry(gameDuration = gameDuration, onDurationChange = {input: String -> vm.onDurationChange(input) } )
+                        val gameDuration: Int by wordboxVM.gameDuration.observeAsState(0)
+                        GameTimeEntry(gameDuration = gameDuration, onDurationChange = {input: String -> wordboxVM.onDurationChange(input) } )
                     }
 
 
@@ -533,13 +544,13 @@ class CreatePuzzle : ComponentActivity() {
                             .padding(0.dp, 0.dp, 36.dp, 0.dp),
                         Arrangement.SpaceAround
                     ) {
-                        Button(onClick = { vm.saveGame() }) {
+                        Button(onClick = { wordboxVM.saveGame() }) {
                             Text(stringResource(R.string.save_game))
                         }
-                        Button(onClick = { vm.shuffleLetters() }) {
+                        Button(onClick = { wordboxVM.shuffleLetters() }) {
                             Text(stringResource(R.string.shuffle))
                         }
-                        Button(onClick = { vm.clearLetters() }) {
+                        Button(onClick = { wordboxVM.clearLetters() }) {
                             Text(stringResource(R.string.clear))
                         }
                     }
@@ -573,21 +584,26 @@ class CreatePuzzle : ComponentActivity() {
         content: @Composable () -> Unit,
     ) {
         Layout(
-            modifier = modifier,
+            modifier = modifier.aspectRatio(1f),
             content = content
         ) { measurables, constraints ->
 
             val gridWidth =
                 if (constraints.maxHeight > constraints.maxWidth) {
-                    constraints.maxWidth
+                    (constraints.maxWidth * 0.88).toInt()
                 } else {
-                    constraints.maxHeight
+                    (constraints.maxHeight * 0.88).toInt()
                 }
 
-            val cellWidth = gridWidth / cols
-            val cellHeight = gridWidth / rows
+            val cellWidth =
+                if (constraints.maxHeight > constraints.maxWidth) {
+                    gridWidth / cols
+                } else {
+                    gridWidth / rows
+                }
 
-            val cellConstraints = Constraints(cellWidth, cellWidth, cellHeight, cellHeight)
+
+            val cellConstraints = Constraints(cellWidth, cellWidth, cellWidth, cellWidth)
 
             val placeables = measurables.map { measurable ->
                 measurable.measure(cellConstraints)
@@ -618,16 +634,14 @@ class CreatePuzzle : ComponentActivity() {
         Box(
             modifier = Modifier
                 .fillMaxSize(1f)
-                .background(MaterialTheme.colors.background)
+                .background(MaterialTheme.colors.primaryVariant)
+                .aspectRatio(1f)
                 .padding(2.dp),
-
-            )
+        )
         {
-
             Surface(
-                color = MaterialTheme.colors.background,
-                elevation = 36.dp
-
+                color = MaterialTheme.colors.surface,
+                elevation = 4.dp
             ) {
                 var selection by remember { mutableStateOf(TextRange.Zero) }
                 var composition by remember { mutableStateOf<TextRange?>(null) }
@@ -658,14 +672,10 @@ class CreatePuzzle : ComponentActivity() {
                     keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters),
                     textStyle = tcrTextStyle
                 )
-
             }
-
         }
     }
 
-
-}
 
 private fun TextRange.constrain(i: Int, length: Int): TextRange {
 
@@ -683,6 +693,8 @@ private fun TextRange.constrain(i: Int, length: Int): TextRange {
     )
 }
 
-
-
-
+override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

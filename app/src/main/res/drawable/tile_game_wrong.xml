@@ -6,7 +6,7 @@
         <shape android:shape="rectangle">
             <stroke
                 android:width="@dimen/tile_stroke"
-                android:color="?attr/tile_border" />
+                android:color="?attr/colorOnSurface" />
             <solid
                 android:color="?attr/tile_wrong" />
             <corners android:radius="@dimen/tile_game_corner_radius" />

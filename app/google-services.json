@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "327133548590",
+    "firebase_url": "https://wordbox-b0d3c-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "wordbox-b0d3c",
+    "storage_bucket": "wordbox-b0d3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327133548590:android:d5979496635873d1ce4fbf",
+        "android_client_info": {
+          "package_name": "com.taochirho.wordbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327133548590-3epbp6phbpgsstbv2b2cebj7vf9br2le.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFFMQlDJ2Awvl-IRSfvsDyvBoDFhmjrhY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327133548590-3epbp6phbpgsstbv2b2cebj7vf9br2le.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

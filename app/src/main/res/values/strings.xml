@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Word Box Solitaire</string>
+    <string name="app_name">Wordbox Solitaire</string>
+    <string name="wb">Wordbox</string>
+    <string name="sol">Solitaire</string>
     <string name="app_subtitle_list"> - saved games</string>
     <string name="app_subtitle_create"> - create game</string>
     <string name="games_list">Stored games</string>
@@ -14,8 +16,9 @@
     <string name="clear">Clear</string>
 
     <string name="save_game">Save</string>
-    <string name="save_game_c">Save - challenge</string>
-    <string name="save_game_s">Save - a solution</string>
+    <string name="save_game_l">Save on phone</string>
+    <string name="save_game_c">Save challenge in cloud</string>
+    <string name="save_game_s">Save solution in cloud</string>
 
 
     <string name="game">game</string>
@@ -28,12 +31,18 @@
 
     <string name="restore">Restore</string>
     <string name="delete">Delete</string>
+    <string name="send">Send</string>
+    <string name="toggle">Toggle show letters</string>
 
-    <string name="clear_games">Clear stored games</string>
+    <string name="cloud_list">Get games from cloud</string>
+    <string name="phone_list">Show games on phone</string>
+    <string name="phone_clear">Clear games on phone</string>
 
     <string name="current">This Game</string>
-    <string name="restart_timer">Restart timer</string>
-    <string name="timer_ended">⛔</string>
+    <string name="game_start">Start</string>
+    <string name="game_pause">Pause</string>
+    <string name="restart_timer">Reset timer</string>
+<!--    <string name="timer_ended">⛔</string>-->
 
     <string name="prefs">Preferences (Time &amp; Tiles)</string>
     <string name="keyTimer">kd</string>

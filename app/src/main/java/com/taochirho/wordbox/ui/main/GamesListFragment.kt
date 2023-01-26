@@ -1,45 +1,45 @@
 package com.taochirho.wordbox.ui.main
 
-import android.content.Context
-import android.content.Intent
+
+
 import android.content.res.Configuration
-import android.graphics.Canvas
+
 import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Typeface
+
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.util.AttributeSet
+import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+
+
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.color.MaterialColors
-import com.google.gson.Gson
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.taochirho.wordbox.R
-import com.taochirho.wordbox.application.GAME_STATUS
-import com.taochirho.wordbox.application.Wordbox
 import com.taochirho.wordbox.database.*
 import com.taochirho.wordbox.databinding.GamesListFragmentBinding
-import com.taochirho.wordbox.model.GamesListModel
-import com.taochirho.wordbox.model.GamesListModelFactory
+import com.taochirho.wordbox.model.WordBoxViewModel
 import kotlinx.coroutines.*
-import java.util.*
-
-
 
 class GamesListFragment : Fragment() {
-    //    private val TAG = "GamesListFragment"
+
+
+    private val TAG = "GamesListFragment"
     lateinit var binding: GamesListFragmentBinding
-    private lateinit var gamesListVM: GamesListModel
+    private val wordboxVM: WordBoxViewModel by activityViewModels()
+
     private val glfJob = Job()
     private val glfScope = CoroutineScope(Dispatchers.Main + glfJob)
 
@@ -49,15 +49,9 @@ class GamesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val application = requireNotNull(this.activity).application as Wordbox
-
-        gamesListVM = ViewModelProvider(
-            this,
-            GamesListModelFactory(application)
-        )[GamesListModel::class.java]
 
         binding = DataBindingUtil.inflate(inflater, R.layout.games_list_fragment, container, false)
-        binding.gamesListModel = gamesListVM
+        binding.gamesListModel = wordboxVM
         binding.lifecycleOwner = viewLifecycleOwner
 
 
@@ -90,17 +84,17 @@ class GamesListFragment : Fragment() {
                 GridLayoutManager(this.activity, 1, GridLayoutManager.HORIZONTAL, false)
         }
 
-        gamesListVM.allGames.observe(viewLifecycleOwner) {
+        wordboxVM.allGames.observe(viewLifecycleOwner) {
             it?.let { adapter.submitList(it) }
         }
 
-        gamesListVM.navigateToGame.observe(viewLifecycleOwner) { uid ->
-            uid?.let {
+        /*wordboxVM.navigateToGame.observe(viewLifecycleOwner) { uid ->
+                  uid?.let {
                 this.findNavController()
-                    .navigate(GamesListFragmentDirections.actionGamesListToGameFragment(uid, false))
-                gamesListVM.onNavigatedToGame()
+                    .navigate(GamesListFragmentDirections.actionGamesListToGameFragment())
+                wordboxVM.onNavigatedToGame()
             }
-        }
+        }*/
         return binding.root
     }
 
@@ -110,7 +104,21 @@ class GamesListFragment : Fragment() {
 
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             binding.TCRListToolbar.title = resources.getString(R.string.app_name)
+            binding.TCRListToolbar.setTitleTextColor(MaterialColors.getColor(
+                requireContext(),
+                R.attr.colorOnPrimary,
+                Color.GREEN
+            ))
+
             binding.TCRListToolbar.subtitle = resources.getString(R.string.app_subtitle_list)
+            binding.TCRListToolbar.setSubtitleTextColor(MaterialColors.getColor(
+                requireContext(),
+                R.attr.colorOnSecondary,
+                Color.GREEN
+            ))
+
+
+
         } else {
             val title = resources.getString(R.string.app_name)
             val subTitle = resources.getString(R.string.app_subtitle_list)
@@ -120,7 +128,7 @@ class GamesListFragment : Fragment() {
                 ForegroundColorSpan(
                     MaterialColors.getColor(
                         requireContext(),
-                        R.attr.subtitleTextColor,
+                        R.attr.colorOnPrimary,
                         Color.MAGENTA
                     )
                 ), 18, newTitle.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -131,8 +139,8 @@ class GamesListFragment : Fragment() {
 
         binding.TCRListToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.clear_games -> {
-                    gamesListVM.clearGames()
+                R.id.phone_clear -> {
+                    wordboxVM.clearGames()
                     true
                 }
                 else -> {
@@ -148,24 +156,63 @@ class GamesListFragment : Fragment() {
     }
 
     private fun onGameDeleteClicked(game: Game) {
-        gamesListVM.gameDelete(game)
+        wordboxVM.gameDelete(game)
     }
 
     private fun onGameRestoreClicked(uid: Int) {
-        gamesListVM.gameRestore(uid)
+        glfScope.launch {
+            wordboxVM.setCurrentGame(wordboxVM.getGame(uid))
+        }
+        findNavController().navigate(R.id.gameFragment)
     }
 
     private fun onGameToggleLetterClicked(game: Game) {
-        gamesListVM.gameToggleLetter(game)
+        wordboxVM.gameToggleLetter(game)
     }
 
-    private fun onGameSendClicked(uid: Int) {
-        glfScope.launch {
+    private fun onGameSendClicked(game: Game) {
 
-            val game = gamesListVM.getGame(uid)
+        Log.w("GamesListFragment", "clicked")
+
+        val firestoreDB = Firebase.firestore
+
+        val fbGame = SentGame(
+            game.timeSet,
+            game.gameFrom,
+            game.gameTag,
+            game.dateSaved,
+            game.status,
+            stringFromTiles(game.gameTiles)
+        )
+
+       /* val fbGame = hashMapOf(
+
+            "timeSet" to game.timeSet,
+            "gameFrom" to game.gameFrom,
+            "gameTag" to game.gameTag,
+            "dateSaved" to game.dateSaved,
+            "status" to game.status,
+            "gameString" to stringFromTiles(game.gameTiles)
+
+        )*/
+
+        firestoreDB.collection("games").document(game.gameTag).set(fbGame)
+           // .add(fbGame)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot added with ID: ${game.gameTag}")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
+            }
+
+
+
+        /*glfScope.launch {
+
+            val game = wordboxVM.getGame(uid)
 
             val sentGame = SentGame(
-                game.timeLeft,
+                game.timeSet,
                 game.gameFrom,
                 game.gameTag,
                 game.dateSaved,
@@ -179,6 +226,8 @@ class GamesListFragment : Fragment() {
                 action = Intent.ACTION_SEND
                 //   component =  ComponentName(this@MainActivity.baseContext,  MainActivity::class.java)
                 putExtra(Intent.EXTRA_TEXT, json)
+
+
                 putExtra(Intent.EXTRA_TITLE, "Wordbox from Dave Rawcliffe")
                 type = "text/json"
             }
@@ -187,6 +236,6 @@ class GamesListFragment : Fragment() {
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
             context?.let { ContextCompat.startActivity(it, shareIntent, null) }
-        }
+        }*/
     }
 }

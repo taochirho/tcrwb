@@ -5,9 +5,9 @@
     <item>
         <shape android:shape="rectangle">
             <stroke
-                android:width="@dimen/timer_stroke"
-                android:color="?attr/colorOnSurface" />
-            <corners android:radius="@dimen/timer_corner_radius" />
+                android:width="@dimen/starter_stroke"
+                android:color="?attr/colorPrimary" />
+            <corners android:radius="@dimen/starter_corner_radius" />
 
         </shape>
     </item>
@@ -19,9 +19,9 @@
         >
         <shape android:shape="rectangle">
             <solid
-                android:color="?attr/colorSurface" />
-            <corners  android:radius="@dimen/timer_corner_radius"
-                 />
+                android:color="?attr/colorOnPrimary" />
+            <corners  android:radius="@dimen/starter_corner_radius"
+                />
 
         </shape>
     </item>

@@ -52,6 +52,9 @@
       <entry_point TYPE="field" FQNAME="com.taochirho.wordbox.model.GameCreateModel answerStr" />
     </entry_points>
     <pattern value="com.taochirho.wordbox.ui.main.TCRStartTile" method="setTileStartState" />
+    <pattern value="com.taochirho.wordbox.model.Event" method="getContentIfNotHandled" />
+    <pattern value="com.taochirho.wordbox.database.SentGame" />
+    <pattern value="com.taochirho.wordbox.database.SentGame" method="SentGame" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

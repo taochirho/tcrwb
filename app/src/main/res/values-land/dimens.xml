@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="action_bar_height">32dp</dimen>
+
+    <dimen name="recycler_padding">0.5dp</dimen>
+
+
+
+    <dimen name="tile_spacing">0.5dp</dimen>
+    <dimen name="list_padding">0.5dp</dimen>
+    <dimen name="image_button_width">33dp</dimen>
+    <dimen name="image_button_height">44dp</dimen>
+
+    <dimen name="top_border">0.5dp</dimen>
+    <dimen name="left_border">0.5dp</dimen>
+    <dimen name="bottom_border">0.5dp</dimen>
+    <dimen name="right_border">0.5dp</dimen>
+
+    <dimen name="vertical_inside">0.25dp</dimen>
+    <dimen name="horizontal_inside">0.25dp</dimen>
+    <dimen name="grid_tile_border">0.25dp</dimen>
+
+    <dimen name="scratchpad_padding">8dp</dimen>
+
+
+</resources>

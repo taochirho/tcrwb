@@ -13,7 +13,7 @@ data class Game(
     val uid: Int,
     val tileCount: Int,
     val swappedTiles: Int,
-    val timeLeft: Long,
+    val timeSet: Long,
     val dateSaved: Date,
     val gameFrom: String,
     val gameTag: String,
@@ -29,6 +29,52 @@ data class Game(
         if (uid != other.uid) return false
         if (tileCount != other.tileCount) return false
         if (swappedTiles != other.swappedTiles) return false
+        if (timeSet != other.timeSet) return false
+        if (dateSaved != other.dateSaved) return false
+        if (gameFrom != other.gameFrom) return false
+        if (gameTag != other.gameTag) return false
+        if (status != other.status) return false
+        if (!gameTiles.contentEquals(other.gameTiles)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = uid
+        result = 31 * result + tileCount
+        result = 31 * result + swappedTiles
+        result = 31 * result + timeSet.hashCode()
+        result = 31 * result + dateSaved.hashCode()
+        result = 31 * result + gameFrom.hashCode()
+        result = 31 * result + gameTag.hashCode()
+        result = 31 * result + status.hashCode()
+        result = 31 * result + gameTiles.contentHashCode()
+        return result
+    }
+}
+
+data class CurrentGame(
+    val uid: Int,
+    val tileCount: Int,
+    val swappedTiles: Int,
+    val timeSet: Long,
+    var timeLeft: Long,
+    val dateSaved: Date,
+    val gameFrom: String,
+    val gameTag: String,
+    val status: GAME_STATUS,
+    val gameTiles: Array<Tile>
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as CurrentGame
+
+        if (uid != other.uid) return false
+        if (tileCount != other.tileCount) return false
+        if (swappedTiles != other.swappedTiles) return false
+        if (timeSet != other.timeSet) return false
         if (timeLeft != other.timeLeft) return false
         if (dateSaved != other.dateSaved) return false
         if (gameFrom != other.gameFrom) return false
@@ -43,6 +89,7 @@ data class Game(
         var result = uid
         result = 31 * result + tileCount
         result = 31 * result + swappedTiles
+        result = 31 * result + timeSet.hashCode()
         result = 31 * result + timeLeft.hashCode()
         result = 31 * result + dateSaved.hashCode()
         result = 31 * result + gameFrom.hashCode()
@@ -133,11 +180,9 @@ class GameRepository(private val gameDao: GameDao, private val currentGameDao: C
 
     suspend fun clear() = gameDao.clear()
 
-    suspend fun insertCurrent(game: Game) = currentGameDao.insertCurrent(game)
-
     suspend fun getCurrent() = currentGameDao.getCurrent()
 
-    suspend fun updateCurrentGame(game: Game) = currentGameDao.updateCurrentGame(game)
+    suspend fun updateCurrentGame(game: CurrentGame) = currentGameDao.updateCurrentGame(game)
 
     fun gameTagFromTiles(enteredTiles: Array<Tile>, shuffledTiles: Array<Tile>, gameTag: String): String{
 

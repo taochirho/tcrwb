@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5bacaaa412a731ba400a4abee90e1481",
+    "identityHash": "21f2cb02acab83c71330317ca24b91a9",
     "entities": [
       {
         "tableName": "saved_games",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tileCount` INTEGER NOT NULL, `swappedTiles` INTEGER NOT NULL, `timeLeft` INTEGER NOT NULL, `dateSaved` INTEGER NOT NULL, `gameFrom` TEXT NOT NULL, `gameTag` TEXT NOT NULL, `status` TEXT NOT NULL, `gameTiles` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tileCount` INTEGER NOT NULL, `swappedTiles` INTEGER NOT NULL, `timeSet` INTEGER NOT NULL, `dateSaved` INTEGER NOT NULL, `gameFrom` TEXT NOT NULL, `gameTag` TEXT NOT NULL, `status` TEXT NOT NULL, `gameTiles` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -27,8 +27,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "timeLeft",
-            "columnName": "timeLeft",
+            "fieldPath": "timeSet",
+            "columnName": "timeSet",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -74,7 +74,7 @@
       },
       {
         "tableName": "current_game",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER NOT NULL, `tileCount` INTEGER NOT NULL, `swappedTiles` INTEGER NOT NULL, `timeLeft` INTEGER NOT NULL, `dateSaved` INTEGER NOT NULL, `gameFrom` TEXT NOT NULL, `gameTag` TEXT NOT NULL, `status` TEXT NOT NULL, `gameTiles` TEXT NOT NULL, PRIMARY KEY(`uid`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER NOT NULL, `tileCount` INTEGER NOT NULL, `swappedTiles` INTEGER NOT NULL, `timeSet` INTEGER NOT NULL, `timeLeft` INTEGER NOT NULL, `dateSaved` INTEGER NOT NULL, `gameFrom` TEXT NOT NULL, `gameTag` TEXT NOT NULL, `status` TEXT NOT NULL, `gameTiles` TEXT NOT NULL, PRIMARY KEY(`uid`))",
         "fields": [
           {
             "fieldPath": "uid",
@@ -91,6 +91,12 @@
           {
             "fieldPath": "swappedTiles",
             "columnName": "swappedTiles",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeSet",
+            "columnName": "timeSet",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -144,7 +150,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5bacaaa412a731ba400a4abee90e1481')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '21f2cb02acab83c71330317ca24b91a9')"
     ]
   }
 }

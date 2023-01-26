@@ -7,16 +7,10 @@
         android:id="@+id/gameFragment"
         android:name="com.taochirho.wordbox.ui.main.GameFragment"
         android:label="@string/app_name">
-        <argument
-            android:name="gameID"
-            android:defaultValue="0"
-            app:argType="integer" />
 
-        <argument
-            android:name="restoreCurrent"
-            android:defaultValue="true"
-            app:argType="boolean" />
-
+        <action
+            android:id="@+id/action_gameFragment_to_gameCreate"
+            app:destination="@id/gameCreate" />
         <action
             android:id="@+id/action_gameFragment_to_gamesList"
             app:destination="@id/gamesList" />
@@ -25,6 +19,17 @@
             app:destination="@id/TCRPrefsFragment" />
 
     </fragment>
+    <fragment
+        android:id="@+id/gameCreate"
+        android:name="com.taochirho.wordbox.ui.main.GameCreateFragment"
+        android:label="@string/create_new">
+        <action
+            android:id="@+id/action_gamesList_to_gameFragment"
+            app:destination="@id/gameFragment" >
+
+        </action>
+    </fragment>
+
     <fragment
         android:id="@+id/gamesList"
         android:name="com.taochirho.wordbox.ui.main.GamesListFragment"
